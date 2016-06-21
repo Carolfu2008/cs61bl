@@ -5,7 +5,7 @@
 public class Account {
 
 	private int balance;
-    Account parentAccount;
+    public Account parentAccount;
 
 	/** Initialize an account with the given BALANCE. */
 	public Account(int balance) {

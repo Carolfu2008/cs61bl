@@ -16,10 +16,10 @@ public class Path {
     public double getNextX(){return this.nextPoint.getX();}
     public double getNextY(){return this.nextPoint.getY();}
     public void iterate(double dx, double dy){
-        currPoint.x = nextPoint.x;
-        currPoint.y = nextPoint.y;
-        nextPoint.x += dx;
-        nextPoint.y += dy;
+        currPoint.setX(nextPoint.getX());
+        currPoint.setY(nextPoint.getY());
+        nextPoint.setX(currPoint.getX()+dx);
+        nextPoint.setY(currPoint.getY()+dy);
     }
 
 }
