@@ -8,9 +8,7 @@ public class Potato1 {
     /* An instance variable representing the potato's age. */
     int age;
 
-    /** A constructor that returns the default potato. The default potato is a
-     *  very young russet burbank potato.
-     */
+    /** A constructor that returns a very young russet burbank potato. */
     public Potato1() {
         this.variety = "Russet Burbank";
         this.age = 0;
