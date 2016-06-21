@@ -1,6 +1,6 @@
 public class Survey {
 
     public String getSecretWord() {
-        return "PUT SECRET WORD HERE!";
+        return  "Hello is it me you're looking for?";
     }
 }
