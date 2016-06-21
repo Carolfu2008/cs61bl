@@ -10,7 +10,7 @@ public class Account {
 	/** Initialize an account with the given BALANCE. */
 	public Account(int balance) {
 		this.balance = balance;
-        parentAccount = null;
+        this.parentAccount = null;
 	}
     public Account(int balance, Account parentAccount){
         this.balance = balance;
@@ -41,7 +41,7 @@ public class Account {
 			return false;
 		} else if (this.balance < amount) {
             if(this.balance + parentAccount.balance >= amount){
-                parentAccount.balance -= amount - this.balance;
+                parentAccount.balance -= (amount - this.balance);
                 this.balance = 0;
                 return true;
             }
