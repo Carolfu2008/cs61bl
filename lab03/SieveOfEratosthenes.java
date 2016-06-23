@@ -13,7 +13,8 @@ public class SieveOfEratosthenes {
             System.out.println("You need to enter an argument!");
         }
         boolean[] isNotPrime = new boolean[upperBound + 1];
-        isNotPrime[0] = isNotPrime[1] = true;
+        isNotPrime[0] =true;
+        if(upperBound >= 1)isNotPrime[1] = true;
         for (int i = 2; i <= upperBound; i++) {
             if (isNotPrime[i] == true) {
                 continue;
