@@ -3,7 +3,7 @@
  */
 public class SieveOfEratosthenes {
     public static void main(String[] args) {
-        int upperBound;
+        int upperBound = 0;
         try {
             upperBound = Integer.parseInt (args[0]);
         } catch (NumberFormatException e) {
