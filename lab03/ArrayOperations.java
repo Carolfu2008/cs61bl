@@ -21,8 +21,8 @@ public class ArrayOperations {
 		if (pos < 0 || pos >= values.length) {
 			return;
 		}
-		for(int i = pos; i<values.length - 1;i++){
-			values[i+1] = values[i];
+		for(int i = values.length - 1; i > pos ;i--){
+			values[i] = values[i-1];
 		}
 		values[pos] = newInt;
 		// YOUR CODE HERE

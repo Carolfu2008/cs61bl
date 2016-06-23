@@ -2,12 +2,16 @@
  * Created by ENVY on 6/23/2016.
  */
 public class SieveOfEratosthenes {
-
     public static void main(String[] args) {
+        int upperBound;
+        try {
+            upperBound = Integer.parseInt (args[0]);
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
         if (args.length < 1) {
             System.out.println("You need to enter an argument!");
         }
-        int upperBound = Integer.parseInt (args[0]);
         boolean[] isNotPrime = new boolean[upperBound + 1];
         isNotPrime[0] = isNotPrime[1] = true;
         for (int i = 2; i <= upperBound; i++) {
