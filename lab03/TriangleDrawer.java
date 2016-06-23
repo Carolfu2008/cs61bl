@@ -13,7 +13,7 @@ public class TriangleDrawer {
             }
             System.out.println();
             row++;
-            col = 0;
+            col = 1;
         }
     }
 }
