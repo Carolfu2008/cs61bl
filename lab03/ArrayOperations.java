@@ -8,7 +8,7 @@ public class ArrayOperations {
 			return;
 		}
 		for(int i = pos; i<values.length - 1;i++){
-			values[pos] = values[pos+1];
+			values[i] = values[i+1];
 		}
 		values[values.length-1] = 0;
 		// YOUR CODE HERE
@@ -20,6 +20,9 @@ public class ArrayOperations {
 	public static void insert (int[] values, int pos, int newInt) {
 		if (pos < 0 || pos >= values.length) {
 			return;
+		}
+		for(int i = pos; i<values.length - 1;i++){
+			values[i+1] = values[i];
 		}
 		values[pos] = newInt;
 		// YOUR CODE HERE
