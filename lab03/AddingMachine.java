@@ -10,11 +10,16 @@ public class AddingMachine {
 		int input;
 		int last = 1;
 		int MAXIMUM_NUMBER_OF_INPUTS = 100;
+		int [] values = new int[MAXIMUM_NUMBER_OF_INPUTS];
+		int i = 0;
 		while (true) {
 			input = scanner.nextInt();
 			if (input == 0) {
 				if (last == 0) {
 					System.out.println("total " + total);
+					for(int j = 0;j <= i; j++){
+						System.out.println(values[j]);
+					}
 					return;
 				}
 				System.out.println("subtotal " + subtotal);
@@ -23,6 +28,10 @@ public class AddingMachine {
 			}
 			subtotal += input;
 			last = input;
+			if(input != 0){
+				values[i] = input;
+				i++;
+			}
 		    // TODO Your code here
 		}
 	}

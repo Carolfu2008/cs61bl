@@ -7,6 +7,10 @@ public class ArrayOperations {
 		if (pos < 0 || pos >= values.length) {
 			return;
 		}
+		for(int i = pos; i<values.length - 1;i++){
+			values[pos] = values[pos+1];
+		}
+		values[values.length-1] = 0;
 		// YOUR CODE HERE
 	}
 	
@@ -17,6 +21,7 @@ public class ArrayOperations {
 		if (pos < 0 || pos >= values.length) {
 			return;
 		}
+		values[pos] = newInt;
 		// YOUR CODE HERE
 	}
 }
