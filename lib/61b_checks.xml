@@ -147,7 +147,9 @@
           <property name="tokens" value="LITERAL_CATCH,LITERAL_WHILE"/>
         </module>
         <module name="LeftCurly"/>
-        <module name="NeedBraces" allowSingleLineStatement="true"/>
+        <module name="NeedBraces">
+            <property name="allowSingleLineStatement" value="true"/>
+        </module>
         <module name="RightCurly"/>
 
 
