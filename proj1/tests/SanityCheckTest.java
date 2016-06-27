@@ -26,7 +26,7 @@ public class SanityCheckTest {
         Main.main(args);
         checkIsFile(args[0]);
         checkIsFile(args[1]);
-        checkFilesEqual(args[1], args[2]);
+        checkFilesEqual(args[1], args[2], args[0]);
         deleteFile(args[1]);
 
         args = new String[]{"tests/correct/trivial/trivial_encrypted.inp", "output.txt",
@@ -34,7 +34,7 @@ public class SanityCheckTest {
         Main.main(args);
         checkIsFile(args[0]);
         checkIsFile(args[1]);
-        checkFilesEqual(args[1], args[2]);
+        checkFilesEqual(args[1], args[2], args[0]);
         deleteFile(args[1]);
     }
 
@@ -46,7 +46,7 @@ public class SanityCheckTest {
         Main.main(args);
         checkIsFile(args[0]);
         checkIsFile(args[1]);
-        checkFilesEqual(args[1], args[2]);
+        checkFilesEqual(args[1], args[2], args[0]);
         deleteFile(args[1]);
  
         args = new String[]{"tests/correct/large/large_encrypted.inp", "output.txt",
@@ -54,7 +54,7 @@ public class SanityCheckTest {
         Main.main(args);
         checkIsFile(args[0]);
         checkIsFile(args[1]);
-        checkFilesEqual(args[1], args[2]);
+        checkFilesEqual(args[1], args[2], args[0]);
         deleteFile(args[1]);
     }
 
@@ -83,36 +83,45 @@ public class SanityCheckTest {
         }
     }
 
-    public void checkFilesEqual(String file1, String file2) {
+    public static void checkFilesEqual(String outputFile, String expectedFile, String inputFile) {
         BufferedReader br1 = null;
         BufferedReader br2 = null;
+        BufferedReader br3 = null;
         try {
-            br1 = new BufferedReader(new InputStreamReader(new FileInputStream(file1)));
-            br2 = new BufferedReader(new InputStreamReader(new FileInputStream(file2)));
+            br1 = new BufferedReader(new InputStreamReader(new FileInputStream(outputFile)));
+            br2 = new BufferedReader(new InputStreamReader(new FileInputStream(expectedFile)));
+            br3 = new BufferedReader(new InputStreamReader(new FileInputStream(inputFile)));
         } catch (FileNotFoundException e) {
             assertTrue("FileNotFoundException: one of input files does not exist.", false);
         }
+        StringBuilder outputBuffer = new StringBuilder();
+        StringBuilder expectedBuffer = new StringBuilder();
+        StringBuilder inputBuffer = new StringBuilder();
 
         try {
-            int read1 = br1.read();
-            int read2 = br2.read();
-            while (true) {
-                assertEquals(read1, read2);
-                read1 = br1.read();
-                read2 = br2.read();
-
-                if (read1 == -1) {
-                    return;
-                }
+            String line;
+            while ((line = br1.readLine()) != null) {
+                outputBuffer.append(line + "\n");
             }
+
+            while ((line = br2.readLine()) != null) {
+                expectedBuffer.append(line + "\n");
+            }
+
+            while ((line = br3.readLine()) != null) {
+                inputBuffer.append(line + "\n");
+            }
+
+            br1.close();
+            br2.close();
+            br3.close();
+            assertEquals("\n%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n" +
+                         "Expected: " + expectedBuffer + "\nYour output: " + outputBuffer +
+                         "\nTo help you debug, here is the input file:\n" + inputBuffer.toString() +
+                         "\n%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n",
+                         expectedBuffer.toString(), outputBuffer.toString());
         } catch (IOException e) {
-            /* If reached, something has gone wrong. */
             assertTrue("Exception while reading files.", false);
         }
-    }
-
-    public static void main(String[] args) {
-        JUnitCore runner = new JUnitCore();
-        runner.run(SanityCheckTest.class);
     }
 }
