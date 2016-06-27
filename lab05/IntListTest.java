@@ -154,8 +154,4 @@ public class IntListTest {
         assertNull(test8);
     }
 
-    public static void main(String[] args) {
-        System.exit(ucb.junit.textui.runClasses(IntListTest.class));
-    }
-
 }
