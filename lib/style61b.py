@@ -33,7 +33,7 @@ for dirname in all_dirs:
 
 
 if checkstyle_jar_path == None:
-	print("Could not find " + checkstyle_jar_name + " in your classpath!")
+	print("Could not find " + checkstyle_jar_name + " in your classpath! Please download the jar and place it in your lib folder, or somewhere on your classpath.")
 	sys.exit()
 
 if checkstyle_rules_path == None:
