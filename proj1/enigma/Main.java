@@ -1,9 +1,7 @@
 // This is a SUGGESTED skeleton file.  Throw it away if you want.
 package enigma;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.IOException;
+import java.io.*;
 
 /** Enigma simulator.
  *  @author
@@ -16,7 +14,7 @@ public final class Main {
      *  specified in the input from the standard input.  Print the
      *  results on the standard output. Exits normally if there are
      *  no errors in the input; otherwise with code 1. */
-    public static void main(String[] unused) {
+    public static void main(String[] args) {
         Machine M;
         BufferedReader input = null;
         try {
@@ -59,12 +57,16 @@ public final class Main {
 
     /** Return true iff LINE is an Enigma configuration line. */
     private static boolean isConfigurationLine(String line) {
+        if(line.charAt(0) == '*')
+            return true;
         return false; // FIXME
     }
 
     /** Configure M according to the specification given on CONFIG,
      *  which must have the format specified in the assignment. */
     private static void configure(Machine M, String config) {
+        String[] splitStr = config.split(" ");
+        M.setRotors(splitStr[6]);
         // FIXME
     }
 
@@ -72,6 +74,9 @@ public final class Main {
      *  removing all blanks and tabs.  It is an error if LINE contains
      *  characters other than letters and blanks. */
     private static String standardize(String line) {
+        line = line.toUpperCase();
+        line = line.trim();
+        line = line.replaceAll(" ", "");
         return line; // FIXME
     }
 
@@ -98,6 +103,12 @@ public final class Main {
     /** Create all the necessary rotors. */
     private static void buildRotors() {
         // FIXME
+        Rotor[] rotors = new Rotor[5];
+        rotors[4]  = new Rotor();
+        rotors[3]  = new Rotor();
+        rotors[2]  = new Rotor();
+        rotors[1] = new FixedRotor();
+        rotors[0] = new Reflector();
     }
 
 }

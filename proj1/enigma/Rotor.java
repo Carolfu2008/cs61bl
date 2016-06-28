@@ -1,11 +1,15 @@
 // This is a SUGGESTED skeleton file.  Throw it away if you don't use it.
 package enigma;
-
 /** Class that represents a rotor in the enigma machine.
- *  @author
+ *  @author Hong-Shuo Chen
  */
-class Rotor {
+class Rotor extends  PermutationData{
     // This needs other methods, fields, and constructors.
+    Rotor(){}
+    Rotor(int name,int _setting){
+        this.name = name;
+        this._setting = _setting;
+    }
 
     /** Size of alphabet used for plaintext and ciphertext. */
     static final int ALPHABET_SIZE = 26;
@@ -13,13 +17,13 @@ class Rotor {
     /** Assuming that P is an integer in the range 0..25, returns the
      *  corresponding upper-case letter in the range A..Z. */
     static char toLetter(int p) {
-        return 'A';  // FIXME
+        return (char)('A'+p);  // FIXME
     }
 
     /** Assuming that C is an upper-case letter in the range A-Z, return the
      *  corresponding index in the range 0..25. Inverse of toLetter. */
     static int toIndex(char c) {
-        return 0;  // FIXME
+        return c-'A';  // FIXME
     }
 
     /** Returns true iff this rotor has a ratchet and can advance. */
@@ -47,28 +51,58 @@ class Rotor {
     /** Return the conversion of P (an integer in the range 0..25)
      *  according to my permutation. */
     int convertForward(int p) {
-        return 0; // FIXME
+        if(name < 8)
+        p += getSetting();
+        if(p >= 26 || p < 0)p = p % 26;
+        p = toIndex(ROTOR_SPECS[name][1].charAt(p));
+        if(name < 8)
+        p -= getSetting();
+        if(p >= 26 || p < 0)p = p % 26;
+
+        return p; // FIXME
     }
 
     /** Return the conversion of E (an integer in the range 0..25)
      *  according to the inverse of my permutation. */
     int convertBackward(int e) {
-        return 0; // FIXME
+        if(name < 8)
+        e += getSetting();
+        if(e >= 26 || e < 0)e = e % 26;
+        e = toIndex(ROTOR_SPECS[name][2].charAt(e));
+        if(name < 8)
+        e -= getSetting();
+        if(e >= 26 || e < 0)e = e % 26;
+        return e; // FIXME
     }
 
     /** Returns true iff I am positioned to allow the rotor to my left
      *  to advance. */
     boolean atNotch() {
-        return false; // FIXME
+        if(_setting == toIndex(ROTOR_SPECS[name][3].charAt(0))){
+            return true;
+        }
+        if(name==5||name==6||name==7){
+            if(_setting == toIndex(ROTOR_SPECS[name][3].charAt(1))){
+                return true;
+            }
+            else  return false;
+        }
+        else
+            return false; // FIXME
     }
 
     /** Advance me one position. */
     void advance() {
         // FIXME
+            _setting++;
+            if (_setting == 26)
+                _setting = 0;
     }
 
     /** My current setting (index 0..25, with 0 indicating that 'A'
      *  is showing). */
     private int _setting;
+    protected int name;
+
 
 }
