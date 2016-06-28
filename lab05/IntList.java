@@ -60,7 +60,16 @@ public class IntList {
      */
     public int get(int position) {
         // YOUR CODE HERE
-        return 0;
+        if (position >= this.size() || position < 0) {
+            throw new IllegalArgumentException();
+        }
+        else {
+            IntList p = this;
+            for (int i = 0; i < position; i++) {
+                p = p.next();
+            }
+            return p.item();
+        }
     }
 
     /**
@@ -70,7 +79,13 @@ public class IntList {
      */
     public int size() {
         // YOUR CODE HERE
-        return 0;
+        int cnt = 0;
+        IntList p = this;
+        for(int i = 0;p != null ;i++){
+            p = p.next();
+            cnt++;
+        }
+        return cnt;
     }
 
     /**
@@ -81,7 +96,14 @@ public class IntList {
      */
     public String toString() {
         // YOUR CODE HERE
-        return null;
+        String s = "( ";
+        IntList p = this;
+        for(int i = 0;p != null ;i++){
+            s = s + p.item() + ' ';
+            p = p.next();
+        }
+        s = s +")";
+        return s;
     }
 
     /**
@@ -90,9 +112,24 @@ public class IntList {
      * @param obj, another list (object)
      * @return Whether the two lists are equal.
      */
-    public boolean equals(Object obj) {
+    public boolean equals(Object  obj) {
         // YOUR CODE HERE
-        return false;
+        try {
+            IntList p = this;
+            if (((IntList) (obj)).size() == this.size()) {
+                while (p != null) {
+                    if (p.item() == ((IntList) (obj)).item()) {
+                        p = p.next();
+                        obj = ((IntList) (obj)).next();
+                    } else
+                        return false;
+                }
+            } else return false;
+
+            return true;
+        }catch (Exception ex){
+            return false;
+        }
     }
 
     /**
@@ -102,6 +139,16 @@ public class IntList {
      */
     public void add(int item) {
         // YOUR CODE HERE
+        if(this == null){
+            this.item=item;
+        }
+        else {
+            IntList p = this;
+            while (p.next() != null) {
+                p = p.next();
+            }
+            p.next = new IntList(item);
+        }
     }
 
     /**
@@ -111,7 +158,16 @@ public class IntList {
      */
     public int smallest() {
         // YOUR CODE HERE
-        return 0;
+        IntList p = this;
+        int min = p.item();
+        p=p.next();
+        while(p != null){
+            if(min > p.item()){
+                min = p.item();
+            }
+            p=p.next();
+        }
+        return min;
     }
 
     /**
@@ -121,7 +177,13 @@ public class IntList {
      */
     public int squaredSum() {
         // YOUR CODE HERE
-        return 0;
+        int sum = 0;
+        IntList p = this;
+        while(p != null){
+            sum += p.item()*p.item();
+            p=p.next();
+        }
+        return sum;
     }
 
     /**
@@ -134,6 +196,25 @@ public class IntList {
      */
     public static IntList append(IntList l1, IntList l2) {
         // YOUR CODE HERE
-        return null;
+        if(l1!=null) {
+            IntList head = new IntList(l1.item());
+            IntList last = head;
+            IntList p = l1.next();
+            while (p != null) {
+                last.next = new IntList(p.item());
+                last = last.next;
+                p = p.next();
+            }
+            p = l2;
+            while (p != null) {
+                last.next = new IntList(p.item());
+                last = last.next;
+                p = p.next();
+            }
+            return head;
+        }
+        else{
+            return l2;
+        }
     }
 }

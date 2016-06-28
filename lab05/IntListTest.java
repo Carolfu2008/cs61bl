@@ -1,3 +1,4 @@
+import junit.framework.TestCase;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Rule;
@@ -6,7 +7,7 @@ import org.junit.Rule;
     @author Wan Fung Chui and Maurice Lee
 */
 
-public class IntListTest {
+public class IntListTest extends TestCase{
 
     @Test
     public void testList() {
@@ -107,7 +108,6 @@ public class IntListTest {
         assertEquals(a, IntList.list(1, 2, 3, 4));
         a.add(5);
         assertEquals(a, IntList.list(1, 2, 3, 4, 5));
-
         IntList single = IntList.list(1);
         single.add(2);
         assertEquals(single, IntList.list(1, 2));
