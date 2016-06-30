@@ -2,7 +2,6 @@
 package enigma;
 
 import java.io.*;
-import java.util.IllegalFormatCodePointException;
 
 /** Enigma simulator.
  *  @author
@@ -69,27 +68,26 @@ public final class Main {
 
     /** Return true iff LINE is an Enigma configuration line. */
     private static boolean isConfigurationLine(String line) {
-        if(line.length()==0) return false;
-        else if(line.charAt(0) == '*')
-            return true;
+        if (line.length() == 0) return false;
+        else if (line.charAt(0) == '*') return true;
         return false; // FIXME
     }
     public static int change(String p) {
         if (p.equals("I")) {
             return 0;
-        } else if(p.equals("II")) {
+        } else if (p.equals("II")) {
             return 1;
-        } else if(p.equals("III")) {
+        } else if (p.equals("III")) {
             return 2;
-        } else if(p.equals("IV")) {
+        } else if (p.equals("IV")) {
             return 3;
-        } else if(p.equals("V")) {
+        } else if (p.equals("V")) {
             return 4;
-        } else if(p.equals("VI")) {
+        } else if (p.equals("VI")) {
             return 5;
-        } else if(p.equals("VII")) {
+        } else if (p.equals("VII")) {
             return 6;
-        } else if(p.equals("VIII")) {
+        } else if (p.equals("VIII")) {
             return 7;
         } else {
             System.out.println("Wrong");
@@ -101,12 +99,11 @@ public final class Main {
     private static void configure(Machine M, String config) {
         String[] splitStr = config.split(" ");
         //for(int i =0;i < 7;i++) System.out.println(splitStr[i]);
-        M.rotors[0].name = (splitStr[1].charAt(0)  - 'B'+10);
+        M.rotors[0].name = (splitStr[1].charAt(0)  - 'B' + 10);
         //System.out.println(M.rotors[0].name);
-        if(splitStr[2].charAt(0) == 'B') {
+        if (splitStr[2].charAt(0) == 'B') {
             M.rotors[1].name = 8;
-        }
-        else M.rotors[1].name = 9;
+        } else M.rotors[1].name = 9;
         //System.out.println(M.rotors[1].name);
         M.rotors[2].name = change(splitStr[3]);
         M.rotors[3].name = change(splitStr[4]);

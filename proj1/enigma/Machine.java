@@ -4,8 +4,8 @@ package enigma;
 /** Class that represents a complete enigma machine.
  *  @author
  */
-class Machine{
-    Rotor[] rotors= new Rotor[5];
+class Machine {
+    Rotor[] rotors = new Rotor[5];
     // This needs other methods or constructors.
     Machine() { }
     /** Set my rotors to (from left to right) ROTORS.  Initially, the rotor
@@ -34,12 +34,11 @@ class Machine{
      *  the rotors accordingly. */
     String convert(String msg) {
         String out = "";
-        for( int i = 0; i < msg.length() ; i++){
+        for (int i = 0; i < msg.length(); i++) {
             int p = msg.charAt(i) - 'A';
             if (rotors[3].atNotch()) {
                 rotors[2].advance();
-                if (rotors[4].atNotch()) {}
-                else rotors[3].advance();
+                if (!rotors[4].atNotch()) rotors[3].advance();
             }
             if (rotors[4].atNotch()) {
                 rotors[3].advance();
