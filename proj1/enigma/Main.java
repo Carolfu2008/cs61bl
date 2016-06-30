@@ -42,7 +42,7 @@ public final class Main {
 
         M = null;
 
-        int p = 0;
+        int x = 0;
         try {
             while (true) {
                 String line = input.readLine();
@@ -50,12 +50,12 @@ public final class Main {
                     break;
                 }
                 if (isConfigurationLine(line)) {
-                    p++;
+                    x++;
                     M = new Machine();
                     M.replaceRotors(rotors);
                     configure(M, line);
                 } else {
-                    if(p==0) throw new EnigmaException();
+                    if(x == 0) throw new EnigmaException();
                     writeMessageLine(M.convert(standardize(line)),
                                      outputFilename);
                 }
@@ -75,21 +75,21 @@ public final class Main {
         return false; // FIXME
     }
     public static int change(String p){
-        if (p.equals("I")){
+        if (p.equals("I")) {
             return 0;
-        }else if(p.equals("II")){
+        }else if(p.equals("II")) {
             return 1;
-        }else if(p.equals("III")){
+        }else if(p.equals("III")) {
             return 2;
-        }else if(p.equals("IV")){
+        }else if(p.equals("IV")) {
             return 3;
-        }else if(p.equals("V")){
+        }else if(p.equals("V")) {
             return 4;
-        }else if(p.equals("VI")){
+        }else if(p.equals("VI")) {
             return 5;
-        }else if(p.equals("VII")){
+        }else if(p.equals("VII")) {
             return 6;
-        }else if(p.equals("VIII")){
+        }else if(p.equals("VIII")) {
             return 7;
         }
         else{
@@ -153,7 +153,6 @@ public final class Main {
     /** Create all the necessary rotors. */
     private static void buildRotors() {
         // FIXME
-
     }
 
 

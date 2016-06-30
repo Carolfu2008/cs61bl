@@ -12,11 +12,11 @@ class Machine{
      *  settings are all 'A'. */
     void replaceRotors(Rotor[] rotors) {
         // FIXME
-        this.rotors[4]=rotors[4];
-        this.rotors[3]=rotors[3];
-        this.rotors[2]=rotors[2];
-        this.rotors[1]=rotors[1];
-        this.rotors[0]=rotors[0];
+        this.rotors[4] = rotors[4];
+        this.rotors[3] = rotors[3];
+        this.rotors[2] = rotors[2];
+        this.rotors[1] = rotors[1];
+        this.rotors[0] = rotors[0];
     }
 
     /** Set my rotors according to SETTING, which must be a string of four
@@ -25,23 +25,23 @@ class Machine{
     void setRotors(String setting) {
         // FIXME
 
-        rotors[4].set(setting.charAt(3)-'A');
-        rotors[3].set(setting.charAt(2)-'A');
-        rotors[2].set(setting.charAt(1)-'A');
-        rotors[1].set(setting.charAt(0)-'A');
+        rotors[4].set(setting.charAt(3) - 'A');
+        rotors[3].set(setting.charAt(2) - 'A');
+        rotors[2].set(setting.charAt(1) - 'A');
+        rotors[1].set(setting.charAt(0) - 'A');
     }
 
     /** Returns the encoding/decoding of MSG, updating the state of
      *  the rotors accordingly. */
     String convert(String msg) {
         String out = "";
-        for(int i = 0;i < msg.length();i++){
+        for( int i = 0; i < msg.length() ; i++){
             int p = msg.charAt(i) - 'A';
-            if(rotors[3].atNotch()){
+            if (rotors[3].atNotch()) {
                 rotors[2].advance();
                 rotors[3].advance();
             }
-            if(rotors[4].atNotch()){
+            if (rotors[4].atNotch()) {
                 rotors[3].advance();
             }
             rotors[4].advance();
@@ -54,7 +54,7 @@ class Machine{
             p = rotors[2].convertBackward(p);
             p = rotors[3].convertBackward(p);
             p = rotors[4].convertBackward(p);
-            char x = (char)(p+'A');
+            char x = (char) (p + 'A');
             out += x;
 
         }

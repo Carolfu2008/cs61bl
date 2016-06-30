@@ -3,7 +3,7 @@ package enigma;
 /** Class that represents a rotor in the enigma machine.
  *  @author Hong-Shuo Chen
  */
-class Rotor extends  PermutationData{
+class Rotor extends  PermutationData {
     // This needs other methods, fields, and constructors.
     Rotor(){}
 
@@ -13,13 +13,13 @@ class Rotor extends  PermutationData{
     /** Assuming that P is an integer in the range 0..25, returns the
      *  corresponding upper-case letter in the range A..Z. */
     static char toLetter(int p) {
-        return (char)('A'+p);  // FIXME
+        return (char) ('A' + p);  // FIXME
     }
 
     /** Assuming that C is an upper-case letter in the range A-Z, return the
      *  corresponding index in the range 0..25. Inverse of toLetter. */
     static int toIndex(char c) {
-        return c-'A';  // FIXME
+        return c - 'A';  // FIXME
     }
 
     /** Returns true iff this rotor has a ratchet and can advance. */
@@ -48,16 +48,16 @@ class Rotor extends  PermutationData{
      *  according to my permutation. */
     int convertForward(int p) {
         //System.out.println(p);
-        if(name < 8)
+        if (name < 8)
         p += getSetting();
         p = p % 26;
         //System.out.println(p);
         p = toIndex(ROTOR_SPECS[name][1].charAt(p));
         //System.out.println(p);
-        if(name < 8)
+        if (name < 8)
         p = p - getSetting();
         p = p % 26;
-        if(p<0)p += 26;
+        if (p < 0)p += 26;
        // System.out.println(p);
         return p; // FIXME
     }
@@ -74,7 +74,7 @@ class Rotor extends  PermutationData{
         if(name < 8)
         e -= getSetting();
         e = e % 26;
-        if(e<0)e += 26;
+        if(e < 0)e += 26;
         //System.out.println(e);
         return e; // FIXME
     }
@@ -85,7 +85,7 @@ class Rotor extends  PermutationData{
         if(_setting == toIndex(ROTOR_SPECS[name][3].charAt(0))){
             return true;
         }
-        if(name==5||name==6||name==7){
+        if(name == 5 || name == 6 || name == 7){
             if(_setting == toIndex(ROTOR_SPECS[name][3].charAt(1))){
                 return true;
             }

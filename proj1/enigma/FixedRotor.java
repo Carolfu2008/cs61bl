@@ -6,7 +6,7 @@ package enigma;
 class FixedRotor extends Rotor {
 
     // This needs other methods or constructors.
-    FixedRotor(){}
+    FixedRotor() { }
 
     @Override
     boolean advances() {

@@ -7,7 +7,7 @@ package enigma;
 class Reflector extends Rotor {
 
     // This needs other methods or constructors.
-    Reflector(){}
+    Reflector() { }
     @Override
     boolean hasInverse() {
         return false;
