@@ -47,18 +47,18 @@ class Rotor extends  PermutationData {
     /** Return the conversion of P (an integer in the range 0..25)
      *  according to my permutation. */
     int convertForward(int p) {
-        System.out.println(p);
+        //System.out.println(p);
         if (name < 8)
         p += getSetting();
         p = p % 26;
-        System.out.println(p);
+        //System.out.println(p);
         p = toIndex(ROTOR_SPECS[name][1].charAt(p));
-        System.out.println(p);
+        //System.out.println(p);
         if (name < 8)
         p = p - getSetting();
         p = p % 26;
         if (p < 0)p += 26;
-       System.out.println(p);
+      //System.out.println(p);
         return p; // FIXME
     }
 
@@ -68,14 +68,14 @@ class Rotor extends  PermutationData {
         if (name < 8)
         e += getSetting();
         e = e % 26;
-        System.out.println(e);
+        //System.out.println(e);
         e = toIndex(ROTOR_SPECS[name][2].charAt(e));
-        System.out.println(e);
+        //System.out.println(e);
         if (name < 8)
         e -= getSetting();
         e = e % 26;
         if (e < 0)e += 26;
-        System.out.println(e);
+        //System.out.println(e);
         return e; // FIXME
     }
 
