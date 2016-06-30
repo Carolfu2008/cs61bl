@@ -7,10 +7,6 @@ class FixedRotor extends Rotor {
 
     // This needs other methods or constructors.
     FixedRotor(){}
-    FixedRotor(int name,int _setting){
-        this.name = name;
-        this.set(_setting);
-    }
 
     @Override
     boolean advances() {

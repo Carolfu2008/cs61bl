@@ -2,6 +2,7 @@
 package enigma;
 
 import java.io.*;
+import java.util.IllegalFormatCodePointException;
 
 /** Enigma simulator.
  *  @author
@@ -31,10 +32,17 @@ public final class Main {
             outputFilename = "output.txt";
         }
 
-        buildRotors();
+        //buildRotors();
+        Rotor[] rotors = new Rotor[5];
+        rotors[4]  = new Rotor();
+        rotors[3]  = new Rotor();
+        rotors[2]  = new Rotor();
+        rotors[1] = new FixedRotor();
+        rotors[0] = new Reflector();
 
         M = null;
 
+        int p = 0;
         try {
             while (true) {
                 String line = input.readLine();
@@ -42,12 +50,16 @@ public final class Main {
                     break;
                 }
                 if (isConfigurationLine(line)) {
+                    p++;
                     M = new Machine();
+                    M.replaceRotors(rotors);
                     configure(M, line);
                 } else {
+                    if(p==0) throw new EnigmaException();
                     writeMessageLine(M.convert(standardize(line)),
                                      outputFilename);
                 }
+
             }
         } catch (IOException excp) {
             System.err.printf("Input error: %s%n", excp.getMessage());
@@ -57,16 +69,54 @@ public final class Main {
 
     /** Return true iff LINE is an Enigma configuration line. */
     private static boolean isConfigurationLine(String line) {
-        if(line.charAt(0) == '*')
+        if(line.length()==0) return false;
+        else if(line.charAt(0) == '*')
             return true;
         return false; // FIXME
     }
-
+    public static int change(String p){
+        if (p.equals("I")){
+            return 0;
+        }else if(p.equals("II")){
+            return 1;
+        }else if(p.equals("III")){
+            return 2;
+        }else if(p.equals("IV")){
+            return 3;
+        }else if(p.equals("V")){
+            return 4;
+        }else if(p.equals("VI")){
+            return 5;
+        }else if(p.equals("VII")){
+            return 6;
+        }else if(p.equals("VIII")){
+            return 7;
+        }
+        else{
+            System.out.println("Wrong");
+            return 999999;
+        }
+    }
     /** Configure M according to the specification given on CONFIG,
      *  which must have the format specified in the assignment. */
     private static void configure(Machine M, String config) {
         String[] splitStr = config.split(" ");
+        //for(int i =0;i < 7;i++) System.out.println(splitStr[i]);
+        M.rotors[0].name = (splitStr[1].charAt(0)  - 'B'+10);
+        //System.out.println(M.rotors[0].name);
+        if(splitStr[2].charAt(0) == 'B'){
+            M.rotors[1].name = 8;
+        }
+        else M.rotors[1].name = 9;
+        //System.out.println(M.rotors[1].name);
+        M.rotors[2].name = change(splitStr[3]);
+        M.rotors[3].name = change(splitStr[4]);
+        M.rotors[4].name = change(splitStr[5]);
+        //System.out.println(M.rotors[2].name);
+        //System.out.println(M.rotors[3].name);
+        //System.out.println(M.rotors[4].name);
         M.setRotors(splitStr[6]);
+
         // FIXME
     }
 
@@ -103,13 +153,9 @@ public final class Main {
     /** Create all the necessary rotors. */
     private static void buildRotors() {
         // FIXME
-        Rotor[] rotors = new Rotor[5];
-        rotors[4]  = new Rotor();
-        rotors[3]  = new Rotor();
-        rotors[2]  = new Rotor();
-        rotors[1] = new FixedRotor();
-        rotors[0] = new Reflector();
+
     }
+
 
 }
 

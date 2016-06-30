@@ -8,9 +8,6 @@ class Reflector extends Rotor {
 
     // This needs other methods or constructors.
     Reflector(){}
-    Reflector(int name){
-        this.name = name;
-    }
     @Override
     boolean hasInverse() {
         return false;
