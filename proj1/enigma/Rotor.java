@@ -78,23 +78,22 @@ class Rotor extends  PermutationData {
     /** Returns true iff I am positioned to allow the rotor to my left
      *  to advance. */
     boolean atNotch() {
-        if (_setting == toIndex(ROTOR_SPECS[name][3].charAt(0))){
+        if (_setting == toIndex(ROTOR_SPECS[name][3].charAt(0))) {
             return true;
         }
         if (name == 5 || name == 6 || name == 7){
-            if (_setting == toIndex(ROTOR_SPECS[name][3].charAt(1))){
+            if (_setting == toIndex(ROTOR_SPECS[name][3].charAt(1))) {
                 return true;
             } else  return false;
-        } else
+        } else {
             return false; // FIXME
+        }
     }
 
     /** Advance me one position. */
     void advance() {
-        // FIXME
-            _setting++;
-            if (_setting == 26)
-                _setting = 0;
+        _setting++;
+        if (_setting == 26) { _setting = 0; }
     }
 
     /** My current setting (index 0..25, with 0 indicating that 'A'
