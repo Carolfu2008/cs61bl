@@ -7,7 +7,7 @@ package enigma;
 class Machine{
     Rotor[] rotors= new Rotor[5];
     // This needs other methods or constructors.
-    Machine(){}
+    Machine() { }
     /** Set my rotors to (from left to right) ROTORS.  Initially, the rotor
      *  settings are all 'A'. */
     void replaceRotors(Rotor[] rotors) {
@@ -24,7 +24,6 @@ class Machine{
      *  rotor setting.  */
     void setRotors(String setting) {
         // FIXME
-
         rotors[4].set(setting.charAt(3) - 'A');
         rotors[3].set(setting.charAt(2) - 'A');
         rotors[2].set(setting.charAt(1) - 'A');
@@ -39,7 +38,8 @@ class Machine{
             int p = msg.charAt(i) - 'A';
             if (rotors[3].atNotch()) {
                 rotors[2].advance();
-                rotors[3].advance();
+                if (rotors[4].atNotch()) {}
+                else rotors[3].advance();
             }
             if (rotors[4].atNotch()) {
                 rotors[3].advance();

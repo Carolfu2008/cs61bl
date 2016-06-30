@@ -55,7 +55,7 @@ public final class Main {
                     M.replaceRotors(rotors);
                     configure(M, line);
                 } else {
-                    if(x == 0) throw new EnigmaException();
+                    if (x == 0) throw new EnigmaException();
                     writeMessageLine(M.convert(standardize(line)),
                                      outputFilename);
                 }
@@ -74,27 +74,26 @@ public final class Main {
             return true;
         return false; // FIXME
     }
-    public static int change(String p){
+    public static int change(String p) {
         if (p.equals("I")) {
             return 0;
-        }else if(p.equals("II")) {
+        } else if(p.equals("II")) {
             return 1;
-        }else if(p.equals("III")) {
+        } else if(p.equals("III")) {
             return 2;
-        }else if(p.equals("IV")) {
+        } else if(p.equals("IV")) {
             return 3;
-        }else if(p.equals("V")) {
+        } else if(p.equals("V")) {
             return 4;
-        }else if(p.equals("VI")) {
+        } else if(p.equals("VI")) {
             return 5;
-        }else if(p.equals("VII")) {
+        } else if(p.equals("VII")) {
             return 6;
-        }else if(p.equals("VIII")) {
+        } else if(p.equals("VIII")) {
             return 7;
-        }
-        else{
+        } else {
             System.out.println("Wrong");
-            return 999999;
+            throw new EnigmaException();
         }
     }
     /** Configure M according to the specification given on CONFIG,
@@ -104,7 +103,7 @@ public final class Main {
         //for(int i =0;i < 7;i++) System.out.println(splitStr[i]);
         M.rotors[0].name = (splitStr[1].charAt(0)  - 'B'+10);
         //System.out.println(M.rotors[0].name);
-        if(splitStr[2].charAt(0) == 'B'){
+        if(splitStr[2].charAt(0) == 'B') {
             M.rotors[1].name = 8;
         }
         else M.rotors[1].name = 9;
@@ -142,7 +141,6 @@ public final class Main {
                     outputString += " ";
                 }
             }
-
             writer.write(outputString + "\n");
             writer.close();
         } catch (IOException e) {
@@ -154,7 +152,6 @@ public final class Main {
     private static void buildRotors() {
         // FIXME
     }
-
 
 }
 

@@ -5,7 +5,7 @@ package enigma;
  */
 class Rotor extends  PermutationData {
     // This needs other methods, fields, and constructors.
-    Rotor(){}
+    Rotor() { }
 
     /** Size of alphabet used for plaintext and ciphertext. */
     static final int ALPHABET_SIZE = 26;
@@ -47,46 +47,46 @@ class Rotor extends  PermutationData {
     /** Return the conversion of P (an integer in the range 0..25)
      *  according to my permutation. */
     int convertForward(int p) {
-        //System.out.println(p);
+        System.out.println(p);
         if (name < 8)
         p += getSetting();
         p = p % 26;
-        //System.out.println(p);
+        System.out.println(p);
         p = toIndex(ROTOR_SPECS[name][1].charAt(p));
-        //System.out.println(p);
+        System.out.println(p);
         if (name < 8)
         p = p - getSetting();
         p = p % 26;
         if (p < 0)p += 26;
-       // System.out.println(p);
+       System.out.println(p);
         return p; // FIXME
     }
 
     /** Return the conversion of E (an integer in the range 0..25)
      *  according to the inverse of my permutation. */
     int convertBackward(int e) {
-        if(name < 8)
+        if (name < 8)
         e += getSetting();
         e = e % 26;
-        //System.out.println(e);
+        System.out.println(e);
         e = toIndex(ROTOR_SPECS[name][2].charAt(e));
-        //System.out.println(e);
-        if(name < 8)
+        System.out.println(e);
+        if (name < 8)
         e -= getSetting();
         e = e % 26;
-        if(e < 0)e += 26;
-        //System.out.println(e);
+        if (e < 0)e += 26;
+        System.out.println(e);
         return e; // FIXME
     }
 
     /** Returns true iff I am positioned to allow the rotor to my left
      *  to advance. */
     boolean atNotch() {
-        if(_setting == toIndex(ROTOR_SPECS[name][3].charAt(0))){
+        if (_setting == toIndex(ROTOR_SPECS[name][3].charAt(0))){
             return true;
         }
-        if(name == 5 || name == 6 || name == 7){
-            if(_setting == toIndex(ROTOR_SPECS[name][3].charAt(1))){
+        if (name == 5 || name == 6 || name == 7){
+            if (_setting == toIndex(ROTOR_SPECS[name][3].charAt(1))){
                 return true;
             }
             else  return false;
