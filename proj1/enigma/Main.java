@@ -102,7 +102,7 @@ public final class Main {
             throw new EnigmaException();
         }
         //for(int i =0;i < 7;i++) System.out.println(splitStr[i]);
-        if (!splitStr[1].equals("B") && !splitStr[2].equals("C")) {
+        if (!splitStr[1].equals("B") && !splitStr[1].equals("C")) {
             throw new EnigmaException();
         }
         if(!splitStr[2].equals("BETA") && !splitStr[2].equals("GAMMA")) {
