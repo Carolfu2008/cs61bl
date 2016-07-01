@@ -122,6 +122,6 @@ public class RuntimeQuiz {
 
     /* reverse() */
     public static Asymptotic reverse_notation = Asymptotic.BIG_THETA;
-    public static Runtime reverse_runtime = Runtime.EXPONENTIAL;
+    public static Runtime reverse_runtime = Runtime.LOGLINEAR;
 
 }
