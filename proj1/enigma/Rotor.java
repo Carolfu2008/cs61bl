@@ -48,6 +48,8 @@ class Rotor extends  PermutationData {
      *  according to my permutation. */
     int convertForward(int p) {
         //System.out.println(p);
+        if(p >= 26 || p < 0)
+            throw new EnigmaException();
         if (name < 10) p += getSetting();
         p = p % 26;
         //System.out.println(p);
@@ -63,6 +65,8 @@ class Rotor extends  PermutationData {
     /** Return the conversion of E (an integer in the range 0..25)
      *  according to the inverse of my permutation. */
     int convertBackward(int e) {
+        if(e >= 26 || e < 0)
+            throw new EnigmaException();
         if (name < 10) e += getSetting();
         e = e % 26;
         //System.out.println(e);
