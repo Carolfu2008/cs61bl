@@ -109,7 +109,7 @@ public class RuntimeQuiz {
     public static Runtime insert_back_runtime = Runtime.CONSTANT;
 
     /* get(int position) */
-    public static Asymptotic get_notation = Asymptotic.BIG_THETA;
+    public static Asymptotic get_notation = Asymptotic.BIG_O;
     public static Runtime get_runtime = Runtime.LINEAR;
 
     /* remove(Object o) */
