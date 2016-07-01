@@ -98,7 +98,16 @@ public final class Main {
      *  which must have the format specified in the assignment. */
     private static void configure(Machine M, String config) {
         String[] splitStr = config.split(" ");
+        if (splitStr.length != 7) {
+            throw new EnigmaException();
+        }
         //for(int i =0;i < 7;i++) System.out.println(splitStr[i]);
+        if (!splitStr[1].equals("B") && !splitStr[2].equals("C")) {
+            throw new EnigmaException();
+        }
+        if(!splitStr[2].equals("BETA") && !splitStr[2].equals("GAMMA")) {
+            throw new EnigmaException();
+        }
         M.rotors[0].name = (splitStr[1].charAt(0)  - 'B' + 10);
         //System.out.println(M.rotors[0].name);
         if (splitStr[2].charAt(0) == 'B') {

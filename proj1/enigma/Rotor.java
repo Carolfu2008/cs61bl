@@ -81,7 +81,7 @@ class Rotor extends  PermutationData {
         if (_setting == toIndex(ROTOR_SPECS[name][3].charAt(0))) {
             return true;
         }
-        if (name == 5 || name == 6 || name == 7){
+        if (name == 5 || name == 6 || name == 7) {
             if (_setting == toIndex(ROTOR_SPECS[name][3].charAt(1))) {
                 return true;
             } else  return false;
