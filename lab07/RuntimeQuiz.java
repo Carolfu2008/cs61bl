@@ -102,7 +102,7 @@ public class RuntimeQuiz {
 
     /* insert(Object o, int position) */
     public static Asymptotic insert_notation = Asymptotic.BIG_THETA;
-    public static Runtime insert_runtime = Runtime.CONSTANT;
+    public static Runtime insert_runtime = Runtime.LINEAR;
 
     /* insertBack(Object o) */
     public static Asymptotic insert_back_notation = Asymptotic.BIG_THETA;
@@ -122,6 +122,6 @@ public class RuntimeQuiz {
 
     /* reverse() */
     public static Asymptotic reverse_notation = Asymptotic.BIG_THETA;
-    public static Runtime reverse_runtime = Runtime.CONSTANT;
+    public static Runtime reverse_runtime = Runtime.LINEAR;
 
 }
