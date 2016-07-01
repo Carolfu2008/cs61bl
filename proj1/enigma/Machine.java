@@ -10,13 +10,13 @@ class Machine {
     Machine() { }
     /** Set my rotors to (from left to right) ROTORS.  Initially, the rotor
      *  settings are all 'A'. */
-    void replaceRotors(Rotor[] rotors) {
+    void replaceRotors(Rotor[] e) {
         // FIXME
-        this.rotors[4] = rotors[4];
-        this.rotors[3] = rotors[3];
-        this.rotors[2] = rotors[2];
-        this.rotors[1] = rotors[1];
-        this.rotors[0] = rotors[0];
+        rotors[4] = e[4];
+        rotors[3] = e[3];
+        rotors[2] = e[2];
+        rotors[1] = e[1];
+        rotors[0] = e[0];
     }
 
     /** Set my rotors according to SETTING, which must be a string of four
