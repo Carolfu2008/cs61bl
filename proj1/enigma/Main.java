@@ -68,8 +68,11 @@ public final class Main {
 
     /** Return true iff LINE is an Enigma configuration line. */
     private static boolean isConfigurationLine(String line) {
-        if (line.length() == 0) return false;
-        else if (line.charAt(0) == '*') return true;
+        if (line.length() == 0) {
+            return false;
+        } else if (line.charAt(0) == '*') {
+            return true;
+        }
         return false; // FIXME
     }
     public static int change(String p) {
@@ -105,7 +108,7 @@ public final class Main {
         if (!splitStr[1].equals("B") && !splitStr[1].equals("C")) {
             throw new EnigmaException();
         }
-        if(!splitStr[2].equals("BETA") && !splitStr[2].equals("GAMMA")) {
+        if (!splitStr[2].equals("BETA") && !splitStr[2].equals("GAMMA")) {
             throw new EnigmaException();
         }
         M.rotors[0].name = (splitStr[1].charAt(0)  - 'B' + 10);
