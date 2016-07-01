@@ -48,8 +48,7 @@ class Rotor extends  PermutationData {
      *  according to my permutation. */
     int convertForward(int p) {
         //System.out.println(p);
-        if(p >= 26 || p < 0)
-            throw new EnigmaException();
+        if (p >= 26 || p < 0) throw new EnigmaException();
         if (name < 10) p += getSetting();
         p = p % 26;
         //System.out.println(p);
@@ -65,8 +64,7 @@ class Rotor extends  PermutationData {
     /** Return the conversion of E (an integer in the range 0..25)
      *  according to the inverse of my permutation. */
     int convertBackward(int e) {
-        if(e >= 26 || e < 0)
-            throw new EnigmaException();
+        if(e >= 26 || e < 0) throw new EnigmaException();
         if (name < 10) e += getSetting();
         e = e % 26;
         //System.out.println(e);
@@ -89,15 +87,14 @@ class Rotor extends  PermutationData {
             if (_setting == toIndex(ROTOR_SPECS[name][3].charAt(1))) {
                 return true;
             } else  return false;
-        } else {
-            return false; // FIXME
         }
+        return false;
     }
 
     /** Advance me one position. */
     void advance() {
         _setting++;
-        if (_setting == 26) { _setting = 0; }
+        if (_setting == 26) _setting = 0;
     }
 
     /** My current setting (index 0..25, with 0 indicating that 'A'

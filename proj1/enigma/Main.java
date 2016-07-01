@@ -69,7 +69,7 @@ public final class Main {
     /** Return true iff LINE is an Enigma configuration line. */
     private static boolean isConfigurationLine(String line) {
         if (line.length() == 0) return false;
-        else if (line.charAt(0) == '*') { return true; }
+        else if (line.charAt(0) == '*') return true;
         return false; // FIXME
     }
     public static int change(String p) {
