@@ -59,7 +59,7 @@ public class RuntimeQuiz {
     }
 
     public static Asymptotic f5_notation = Asymptotic.BIG_THETA;
-    public static Runtime f5_runtime = Runtime.LINEAR;
+    public static Runtime f5_runtime = Runtime.LOG_N;
     public void f5(int n) {
         int[] array = {1, 2, 3};
         while (n > 0) {
@@ -113,7 +113,7 @@ public class RuntimeQuiz {
     public static Runtime get_runtime = Runtime.LINEAR;
 
     /* remove(Object o) */
-    public static Asymptotic remove_object_notation = Asymptotic.BIG_OMEGA;
+    public static Asymptotic remove_object_notation = Asymptotic.BIG_THETA;
     public static Runtime remove_object_runtime = Runtime.LINEAR;
 
     /* remove(DLNode n) */
