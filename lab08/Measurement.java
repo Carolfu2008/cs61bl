@@ -58,7 +58,7 @@ public class Measurement {
 	 * that m2 will always be smaller than the current measurement.
 	 */
 	public Measurement minus(Measurement m2) {
-		if(myInches + m2.getInches() >= 0)
+		if(myInches - m2.getInches() >= 0)
 			return new Measurement(myFeet - m2.getFeet(),myInches - m2.getInches());// provided to allow the file to compile
 		else
 			return new Measurement(myFeet - m2.getFeet() - 1,myInches - m2.getInches() + 12); // provided to allow the file to compile
@@ -86,7 +86,7 @@ public class Measurement {
 	@Override
 	public String toString() {
 		System.out.println("\tMeasurement toString called");
-		return new String(myFeet + "\' " + myInches + "\""); // provided to allow the file to compile
+		return new String(myFeet + "\' " + myInches + " \""); // provided to allow the file to compile
 	}
 
 }

@@ -28,7 +28,9 @@ public class MeasurementTest {
 
     @Test
     public void minus() throws Exception {
-
+        Measurement a = new Measurement(3,2);
+        Measurement b = new Measurement(2,10);
+        System.out.println(a.minus(b));
     }
 
     @Test
