@@ -55,7 +55,7 @@ public class RuntimeQuiz {
             if (i == 'a') counter++;
         }
         int mid = start + ((end - start) / 2);
-        return counter + f3(array, start, mid) + f3(array, mid + 1, end);
+        return counter + f4(array, start, mid) + f4(array, mid + 1, end);
     }
 
     public static Asymptotic f5_notation = Asymptotic.BIG_THETA;
