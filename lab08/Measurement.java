@@ -86,7 +86,7 @@ public class Measurement {
 	@Override
 	public String toString() {
 		System.out.println("\tMeasurement toString called");
-		return new String(myFeet + "\'  " + myInches + "\""); // provided to allow the file to compile
+		return new String(myFeet + "\'" + myInches + "\""); // provided to allow the file to compile
 	}
 
 }
