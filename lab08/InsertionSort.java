@@ -5,7 +5,12 @@ public class InsertionSort {
     public static void insert (int list[], int k) {
 
         // YOUR CODE HERE
-
+        int temp = list[k];
+        int i = 0;
+        for (i = k; i > 0 && temp < list[i - 1]; i--){
+            list[i] = list[i - 1];
+        }
+        list[i] =temp;
     }
     
     // Does nothing when elements 0 through k of list are sorted in
@@ -14,6 +19,11 @@ public class InsertionSort {
     public static void isOK (int[] list, int k) {
 
         // YOUR CODE HERE
+        for (int i = 0; i < k ;i++){
+            if(list[i] > list[i + 1]){
+                throw new IllegalStateException();
+            }
+        }
 
     }
 

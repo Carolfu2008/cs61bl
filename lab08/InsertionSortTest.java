@@ -54,7 +54,6 @@ public class InsertionSortTest {
         int[] arr = {4, 5, 6, 2, 3, 9, 1, 7, 8, 0};
         int[] result = InsertionSort.insertionSort(arr);
         int[] check = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
-
         assertEquals(Arrays.toString(result), Arrays.toString(check));
     }
 
