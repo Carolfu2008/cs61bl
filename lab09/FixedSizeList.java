@@ -78,7 +78,14 @@ public class FixedSizeList implements SimpleList {
         if(i >= values.length) {
             throw new ListException("no index");
         }
-        return values[i];
+        int q = i;
+        for (int p = 0;p < values.length ;p++){
+            if(values[i] != 0){
+                q--;
+            }
+            if(q == 0) return values[i];
+        }
+        return 0;
         // YOUR CODE HERE
     }
 
