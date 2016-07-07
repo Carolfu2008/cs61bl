@@ -12,6 +12,9 @@ public class FixedSizeList implements SimpleList {
         values = new int[capacity];
     }
 
+    public FixedSizeList() {
+    }
+
     // This method should return the number of items 
     // contained in values
     public int size() {
