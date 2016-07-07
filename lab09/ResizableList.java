@@ -34,7 +34,7 @@ public class ResizableList extends FixedSizeList {
         }
         for(int i = 0; i < values.length; i++){
             if(values[i] == 0){
-                values[count] = k;
+                values[i] = k;
                 break;
             }
         }

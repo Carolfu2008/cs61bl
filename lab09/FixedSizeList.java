@@ -42,7 +42,7 @@ public class FixedSizeList implements SimpleList {
             throw new ListException("no capacity");
         for(int i = 0; i < values.length; i++){
             if(values[i] == 0){
-                values[count] = k;
+                values[i] = k;
                 break;
             }
         }
@@ -75,7 +75,7 @@ public class FixedSizeList implements SimpleList {
 
     // Returns the integer stored at the i-th index in the List
     public int get(int i) {
-        if(i > values.length || values[i] == 0) {
+        if(i >= values.length) {
             throw new ListException("no index");
         }
         return values[i];
@@ -102,7 +102,7 @@ public class FixedSizeList implements SimpleList {
     // note now this is different from the one-argument remove 
     public void removeIndex(int i) {
         // YOUR CODE HERE
-        if (i > values.length || values[i] == 0) {
+        if (i >= values.length) {
             throw new ListException("no index");
         } else {
             values[i] = 0;
