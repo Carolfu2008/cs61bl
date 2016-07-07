@@ -80,10 +80,10 @@ public class FixedSizeList implements SimpleList {
         }
         int q = i;
         for (int p = 0;p < values.length ;p++){
-            if(values[i] != 0){
+            if(values[p] != 0){
                 q--;
             }
-            if(q == 0) return values[i];
+            if(q == 0) return values[p];
         }
         return 0;
         // YOUR CODE HERE
@@ -112,8 +112,17 @@ public class FixedSizeList implements SimpleList {
         if (i >= values.length) {
             throw new ListException("no index");
         } else {
-            values[i] = 0;
-            count--;
+            int q = i;
+            for (int p = 0;p < values.length ;p++){
+                if(values[p] != 0){
+                    q--;
+                }
+                if(q == 0) {
+                    values[p] = 0;
+                    count--;
+                    return;
+                }
+            }
         }
     }
 
