@@ -75,7 +75,10 @@ public class FixedSizeList implements SimpleList {
         if(i >= count) {
             throw new ListException("no index");
         }
-        else return values[i];
+        else{
+            System.out.println(values[i]);
+            return values[i];
+        }
         // YOUR CODE HERE
     }
 
