@@ -28,11 +28,10 @@ public class FixedSizeList implements SimpleList {
     // is empty, otherwise return false
     public boolean isEmpty() {
         // YOUR CODE HERE
-        for(int i = 0; i< values.length; i++){
-            if(values[i] != 0)
-                return false;
-        }
-        return true;
+        if(count == 0)
+            return true;
+        else
+            return false;
     }
 
     // Add the argument to the list by placing it in the first
@@ -80,7 +79,7 @@ public class FixedSizeList implements SimpleList {
         if(i >= values.length) {
             throw new ListException("no index");
         }
-        System.out.println("i"+i);
+       /* System.out.println("i"+i);
         for(int k = 0; k < values.length; k++){
             System.out.println(k + " "+ values[k]);
         }
@@ -89,8 +88,8 @@ public class FixedSizeList implements SimpleList {
             if(values[p] != 0){
                 i--;
             }
-        }
-        return 0;
+        }*/
+        return values[i];
         // YOUR CODE HERE
     }
 
