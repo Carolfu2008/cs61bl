@@ -76,7 +76,7 @@ public class FixedSizeList implements SimpleList {
             throw new ListException("no index");
         }
         else{
-            System.out.println(values[i]);
+            System.out.print( values[i]+" " + i+"//");
             return values[i];
         }
         // YOUR CODE HERE
