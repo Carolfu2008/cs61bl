@@ -41,13 +41,8 @@ public class FixedSizeList implements SimpleList {
         // YOUR CODE HERE
         if(count == values.length)
             throw new ListException("no capacity");
-        for(int i = 0; i < values.length; i++){
-            if(values[i] == 0){
-                values[i] = k;
-                break;
-            }
-        }
-        count ++;
+        values[count] = k;
+        count++;
     }
 
     // This method removes k from the list, if it is present.
@@ -56,8 +51,9 @@ public class FixedSizeList implements SimpleList {
         // YOUR CODE HERE
         for(int i = 0;i < values.length; i++){
             if(values[i] == k) {
-                values[i] = 0;
-                count--;
+                for(int j = i;j < count; j++){
+                    values[j] = values[j+1];
+                }
                 break;
             }
         }
@@ -76,19 +72,9 @@ public class FixedSizeList implements SimpleList {
 
     // Returns the integer stored at the i-th index in the List
     public int get(int i) {
-        if(i >= values.length) {
+        if(i >= count) {
             throw new ListException("no index");
         }
-       /* System.out.println("i"+i);
-        for(int k = 0; k < values.length; k++){
-            System.out.println(k + " "+ values[k]);
-        }
-        for (int p = 0;p < values.length ;p++){
-            if(i == 0 && values[p] != 0) return values[p];
-            if(values[p] != 0){
-                i--;
-            }
-        }*/
         return values[i];
         // YOUR CODE HERE
     }
@@ -113,19 +99,11 @@ public class FixedSizeList implements SimpleList {
     // note now this is different from the one-argument remove 
     public void removeIndex(int i) {
         // YOUR CODE HERE
-        if (i >= values.length) {
+        if (i >= count) {
             throw new ListException("no index");
         } else {
-            int q = i;
-            for (int p = 0;p < values.length ;p++){
-                if(values[p] != 0){
-                    q--;
-                }
-                if(q == 0) {
-                    values[p] = 0;
-                    count--;
-                    return;
-                }
+            for(int j = i;j < count; j++){
+                values[j] = values[j+1];
             }
         }
     }
