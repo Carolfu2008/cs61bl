@@ -80,19 +80,17 @@ public class FixedSizeList implements SimpleList {
         if(i >= values.length) {
             throw new ListException("no index");
         }
-        int q = i;
         System.out.println("i"+i);
         for(int k = 0; k < values.length; k++){
             System.out.println(k + " "+ values[k]);
         }
         for (int p = 0;p < values.length ;p++){
-            if(q == 0 && values[p] != 0) return values[p];
+            if(i == 0 && values[p] != 0) return values[p];
             if(values[p] != 0){
-                q--;
+                i--;
             }
-
         }
-        return 2;
+        return 0;
         // YOUR CODE HERE
     }
 
