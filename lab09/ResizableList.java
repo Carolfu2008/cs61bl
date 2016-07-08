@@ -10,7 +10,7 @@ public class ResizableList extends FixedSizeList {
     }
     public void add(int i, int k) {
         if(count == values.length){
-            int[] val = new int[values.length];
+            int[] val = new int[values.length + 1];
             for (int p = 0; p < values.length; p++){
                 val[p] = values[p];
             }
@@ -30,8 +30,8 @@ public class ResizableList extends FixedSizeList {
     public void add(int k) {
         // YOUR CODE HERE
         if(count == values.length){
-            int[] val = new int[values.length];
-            for (int i = 0; i<values.length; i++){
+            int[] val = new int[values.length + 1];
+            for (int i = 0; i < values.length; i++){
                 val[i] = values[i];
             }
             values = new int[(val.length+1) * 2];
