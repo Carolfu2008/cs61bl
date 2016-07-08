@@ -73,11 +73,12 @@ public class FixedSizeList implements SimpleList {
     // Returns the integer stored at the i-th index in the List
     public int get(int i) {
         if(i >= count) {
+            System.out.println(":");
             throw new ListException("no index");
         }
         else{
-            System.out.print( values[i]+" " + i+"//");
-            return values[i]+1;
+            System.out.print(values.length+" ");
+            return values[i];
         }
         // YOUR CODE HERE
     }
