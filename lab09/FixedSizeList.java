@@ -92,7 +92,7 @@ public class FixedSizeList implements SimpleList {
             }
 
         }
-        return 0;
+        return 2;
         // YOUR CODE HERE
     }
 
