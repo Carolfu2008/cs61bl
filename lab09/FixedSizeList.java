@@ -41,8 +41,10 @@ public class FixedSizeList implements SimpleList {
         // YOUR CODE HERE
         if(count == values.length)
             throw new ListException("no capacity");
-        values[count] = k;
-        count++;
+        else {
+            values[count] = k;
+            count++;
+        }
     }
 
     // This method removes k from the list, if it is present.
@@ -75,7 +77,7 @@ public class FixedSizeList implements SimpleList {
         if(i >= count) {
             throw new ListException("no index");
         }
-        return values[i];
+        else return values[i];
         // YOUR CODE HERE
     }
 
@@ -87,11 +89,13 @@ public class FixedSizeList implements SimpleList {
     public void add(int i, int k) {
         if(count == values.length)
             throw new ListException("no capacity");
-        for (int p = i + 1; p <= count; p++) {
-            values[p] = values[p-1];
+        else{
+            for (int p = i + 1; p <= count; p++) {
+                values[p] = values[p-1];
+            }
+            values[i] = k;
+            count++;
         }
-        values[i] = k;
-        count++;
     }
 
 
