@@ -77,7 +77,7 @@ public class FixedSizeList implements SimpleList {
         }
         else{
             System.out.print( values[i]+" " + i+"//");
-            return values[i];
+            return values[i]+1;
         }
         // YOUR CODE HERE
     }
