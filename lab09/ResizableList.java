@@ -2,7 +2,12 @@
  * Created by ENVY on 7/7/2016.
  */
 public class ResizableList extends FixedSizeList {
-    public ResizableList() {}
+
+    public ResizableList(int capacity) {
+        super(capacity);
+    }
+    public ResizableList(){
+    }
     public void add(int i, int k) {
         if(count == values.length){
             int[] val = new int[values.length];
