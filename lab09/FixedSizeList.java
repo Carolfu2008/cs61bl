@@ -90,8 +90,8 @@ public class FixedSizeList implements SimpleList {
         if(count == values.length)
             throw new ListException("no capacity");
         else{
-            for (int p = i + 1; p <= count; p++) {
-                values[p] = values[p-1];
+            for (int p = i; p < count; p++) {
+                values[p + 1] = values[p];
             }
             values[i] = k;
             count++;
