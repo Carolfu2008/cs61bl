@@ -54,6 +54,7 @@ public class FixedSizeList implements SimpleList {
                 for(int j = i;j < count; j++){
                     values[j] = values[j+1];
                 }
+                count--;
                 break;
             }
         }
@@ -72,12 +73,9 @@ public class FixedSizeList implements SimpleList {
 
     // Returns the integer stored at the i-th index in the List
     public int get(int i) {
-        if(i >= count) {
-            System.out.println(":");
+        if(i >= count)
             throw new ListException("no index");
-        }
         else{
-            System.out.print(values.length+" ");
             return values[i];
         }
         // YOUR CODE HERE
@@ -111,6 +109,7 @@ public class FixedSizeList implements SimpleList {
             for(int j = i;j < count; j++){
                 values[j] = values[j+1];
             }
+            count--;
         }
     }
 
