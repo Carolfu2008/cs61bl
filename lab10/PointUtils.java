@@ -12,9 +12,16 @@ public class PointUtils {
 	public static Point highestPoint(List<Point> points) {
 		/* This is the equivalent of the initialization step mentioned in lab. */
 		Iterator<Point> pointIterator = points.iterator();
+		Point largestY = points.get(0);
+		while(pointIterator.hasNext()){
+			Point p = pointIterator.next();
+			if(p.getY() > largestY.getY()){
+				largestY = p;
+			}
+		}
 
 		// TODO use the iterator to complete this method!
-		return null;
+		return largestY;
 	}
 
 	/**
@@ -26,7 +33,18 @@ public class PointUtils {
 	public static Point centroid(List<Point> points) {
 		Iterator<Point> pointIterator = points.iterator();
 		// TODO use the iterator to complete this method!
-		return null;
+		Point centroid;
+		int sumOfx = 0;
+		int sumOfy = 0;
+		int count = 0;
+		while(pointIterator.hasNext()){
+			Point p = pointIterator.next();
+			sumOfx += p.getX();
+			sumOfy += p.getY();
+			count++;
+		}
+		centroid = new Point(sumOfx / count,sumOfy / count);
+		return centroid;
 	}
 
 	public static void main(String[] args) {
