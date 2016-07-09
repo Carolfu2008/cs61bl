@@ -1,7 +1,28 @@
+import java.util.Iterator;
+
 public class DLList <T>{
     DLNode sentinel;
     int size;
+    public Iterator<T> iterator(){
 
+        return new DLListIterator();
+    }
+
+    private class DLListIterator implements Iterator<T> {
+        private DLNode p = sentinel;
+        public boolean hasNext(){
+            if(p.next != sentinel)
+                return true;
+            else
+                return false;
+        }
+        public T next(){
+            p = p.next;
+            return p.item;
+        }
+
+        public void remove() {}
+    }
     public class DLNode {
         T item;
         DLNode prev, next;
