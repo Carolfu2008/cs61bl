@@ -1,6 +1,6 @@
 import java.util.Iterator;
 
-public class DLList <T>{
+public class DLList <T> implements Iterable<T>{
     DLNode sentinel;
     int size;
     public Iterator<T> iterator(){
