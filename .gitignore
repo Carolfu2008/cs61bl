@@ -1,8 +1,12 @@
 # Project 2 and 3 specifics
-berkeley.osm
 proj2/img
 proj3/img
 test_data
+*test_data*
+*.png
+*.jpg
+*.osm
+*.xml
 
 # Created by https://www.gitignore.io/api/java,intellij,eclipse,vim,emacs,microsoftoffice,netbeans,bluej
 *.pyc
