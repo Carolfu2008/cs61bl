@@ -1,3 +1,5 @@
+import com.sun.org.apache.xpath.internal.SourceTree;
+
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -55,7 +57,9 @@ public class DBTable<T> {
      * @return A List of the contents of this table, ordered by the result of the getter.
      */
     public <R extends Comparable<R>> List<T> getOrderedBy(Function<T, R> getter) {
-        return null; // FIX ME
+        List<T> rtn = getEntries();
+        rtn.sort((a,b)->getter.apply(a).compareTo(getter.apply(b)));
+        return rtn; // FIX ME
     }
 
     /**
@@ -104,6 +108,8 @@ public class DBTable<T> {
                 new User(1, "sarahjkim", "potato@potato.com"),
                 new User(1, "alanyao", "potato@cs61bl.org")
         ));
-        System.out.println("t = " + t.groupByWhitelist(User::getId, Arrays.asList(1, 2)));
+        List<User> l = t.getOrderedBy(User::getUsername);
+        System.out.println(t.entries);
+        //System.out.println("t = " + t.groupByWhitelist(User::getId, Arrays.asList(1, 2)));
     }
 }

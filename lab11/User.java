@@ -67,18 +67,26 @@ public class User implements Comparable<User> {
 
     @Override
     public boolean equals(Object o) {
-        return false; // FIX ME
+        if (this.toString().equals(o.toString()))
+            return true; // FIX ME
+        else
+            return false;
     }
 
     @Override
     public int compareTo(User o) {
-        return Integer.MIN_VALUE; // FIX ME
+        int i = this.toString().compareTo(o.toString());
+        if(i > 0)
+            return Integer.MAX_VALUE;// FIX ME
+        else if(i < 0)
+            return Integer.MIN_VALUE;
+        else return 0;
     }
 
     public static void main(String[] args) {
         User[] users = {new User(2, "daniel", ""), new User(4, "matt", ""),
                 new User(1, "sarahjkim", ""), new User(1, "alanyao", "")};
-//        Arrays.sort(users);
+        Arrays.sort(users);
         System.out.println(Arrays.toString(users));
     }
 }
