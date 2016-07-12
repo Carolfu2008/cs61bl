@@ -1,6 +1,4 @@
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class UserExercises extends DBTable<User> {
@@ -16,7 +14,9 @@ public class UserExercises extends DBTable<User> {
      * then on their id if the age is the same.
      */
     public List<User> getOrderedByAgeThenId() {
-        return null; // FIX ME
+        List<User> rtn = getEntries();
+        rtn.sort((a,b)->a.getAge()-b.getAge());
+        return rtn; // FIX ME // FIX ME
     }
 
     /**
@@ -24,7 +24,13 @@ public class UserExercises extends DBTable<User> {
      * If there are no users, the average is 0.
      */
     public double getAverageAge() {
-        return -1; // FIX ME
+        List<User> rtn = getEntries();
+        double sum = 0;
+        for(int i = 0; i < rtn.size();i++){
+            sum += rtn.get(i).getAge();
+        }
+        sum /= rtn.size();
+        return sum; // FIX ME
     }
 
     /**
@@ -33,6 +39,15 @@ public class UserExercises extends DBTable<User> {
      * Returns a Map from each age present to a list of the usernames that have that age.
      */
     public Map<Integer, List<String>> groupUsernamesByAgeOlderThan(int min_age) {
-        return null; // FIX ME
+        List<User> r = getEntries();
+        Map<Integer, List<String>> rtn = new HashMap<Integer, List<String>>();
+        for(int i = 0; i < r.size();i++){
+            if(r.get(i).getAge() >  min_age){
+                List<String> p = new ArrayList<>();
+                p.add(r.get(i).getUsername());
+                rtn.put(r.get(i).getAge(),p);
+            }
+        }
+        return rtn; // FIX ME
     }
 }

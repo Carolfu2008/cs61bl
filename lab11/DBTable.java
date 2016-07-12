@@ -72,7 +72,7 @@ public class DBTable<T> {
      * All keys present in this DB as obtained by the getter and in the whitelist are allowed.
      */
     public <R> Map<R, List<T>> groupByWhitelist(Function<T, R> getter, Collection<R> whitelist) {
-        return null; // FIX ME
+        return null;// FIX ME
     }
 
     /**
@@ -97,7 +97,11 @@ public class DBTable<T> {
      * should print out the daniel object twice, matt 3 times, and the remaining two once.
      */
     public <R extends Number> List<T> duplicateOn(Function<T, R> getter) {
-        return null; // FIX ME
+        List<T> rtn = getEntries();
+        rtn.stream()
+        .map(s->s.toString()+s.toString())
+        .collect(Collectors.toList());
+        return rtn; // FIX ME
     }
 
     public static void main(String[] args) {
@@ -109,7 +113,8 @@ public class DBTable<T> {
                 new User(1, "alanyao", "potato@cs61bl.org")
         ));
         List<User> l = t.getOrderedBy(User::getUsername);
-        System.out.println(t.entries);
+        //System.out.println(l);
+        System.out.println("t = " + t.duplicateOn(User::getId));
         //System.out.println("t = " + t.groupByWhitelist(User::getId, Arrays.asList(1, 2)));
     }
 }
