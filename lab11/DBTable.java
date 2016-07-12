@@ -1,4 +1,5 @@
 import com.sun.org.apache.xpath.internal.SourceTree;
+import com.sun.org.apache.xpath.internal.operations.Number;
 
 import java.util.*;
 import java.util.function.Function;
@@ -72,7 +73,21 @@ public class DBTable<T> {
      * All keys present in this DB as obtained by the getter and in the whitelist are allowed.
      */
     public <R> Map<R, List<T>> groupByWhitelist(Function<T, R> getter, Collection<R> whitelist) {
-        return null;// FIX ME
+        List<T> a = getEntries();
+        Map<R, List<T>> rtn = new HashMap<R, List<T>>();
+        for(int i = 0;i < a.size();i++){
+                if(whitelist.contains(getter.apply(a.get(i)))){
+                    if((rtn.get(getter.apply(a.get(i)))) == null) {
+                        List<T> p = new ArrayList<>();
+                        p.add(a.get(i));
+                        rtn.put((getter.apply(a.get(i))), p);
+                    }
+                    else{
+                        rtn.get((getter.apply(a.get(i)))).add(a.get(i));
+                    }
+                }
+        }
+        return rtn;// FIX ME
     }
 
     /**
@@ -81,7 +96,10 @@ public class DBTable<T> {
      * DBTable<String> names = table.getSubtableOf(User::getUsername);
      */
     public <R> DBTable<R> getSubtableOf(Function<T, R> getter) {
-        return null; // FIX ME
+        DBTable<R> rtn = new DBTable<R>();
+        List<T> k =getEntries();
+        rtn.entries = k.stream().map(getter).collect(Collectors.toList());
+        return rtn; // FIX ME
     }
 
     /**
@@ -98,10 +116,16 @@ public class DBTable<T> {
      */
     public <R extends Number> List<T> duplicateOn(Function<T, R> getter) {
         List<T> rtn = getEntries();
-        rtn.stream()
-        .map(s->s.toString()+s.toString())
-        .collect(Collectors.toList());
-        return rtn; // FIX ME
+        List<T> p = new LinkedList<>();
+        for(int i = 0; i < rtn.size();i++){
+            R x = getter.apply(rtn.get(i));
+            int j =0;
+            while(!x.equals(j)){
+                p.add(rtn.get(i));
+                j++;
+            }
+        }
+        return p; // FIX ME
     }
 
     public static void main(String[] args) {
@@ -112,9 +136,9 @@ public class DBTable<T> {
                 new User(1, "sarahjkim", "potato@potato.com"),
                 new User(1, "alanyao", "potato@cs61bl.org")
         ));
-        List<User> l = t.getOrderedBy(User::getUsername);
+        //List<User> l = t.getOrderedBy(User::getUsername);
         //System.out.println(l);
-        System.out.println("t = " + t.duplicateOn(User::getId));
+       // System.out.println("t = " + t.duplicateOn(User::getId));
         //System.out.println("t = " + t.groupByWhitelist(User::getId, Arrays.asList(1, 2)));
     }
 }
