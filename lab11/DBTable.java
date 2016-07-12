@@ -114,7 +114,7 @@ public class DBTable<T> {
      *         System.out.println("t = " + t.duplicateOn(User::getId));
      * should print out the daniel object twice, matt 3 times, and the remaining two once.
      */
-    public <R extends Number> List<T> duplicateOn(Function<T, R> getter) {
+    public <R> List<T> duplicateOn(Function<T, R> getter) {
         List<T> rtn = getEntries();
         List<T> p = new LinkedList<>();
         for(int i = 0; i < rtn.size();i++){
@@ -138,7 +138,7 @@ public class DBTable<T> {
         ));
         //List<User> l = t.getOrderedBy(User::getUsername);
         //System.out.println(l);
-       // System.out.println("t = " + t.duplicateOn(User::getId));
+       System.out.println("t = " + t.duplicateOn(User::getId));
         //System.out.println("t = " + t.groupByWhitelist(User::getId, Arrays.asList(1, 2)));
     }
 }
