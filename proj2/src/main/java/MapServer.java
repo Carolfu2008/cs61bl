@@ -72,7 +72,7 @@ public class MapServer {
      * This is for testing purposes, and you may fail tests otherwise.
      **/
     public static void initialize() {
-        g = new GraphDB(OSM_DB_PATH);
+        // g = new GraphDB(OSM_DB_PATH);
     }
 
     public static void main(String[] args) {
