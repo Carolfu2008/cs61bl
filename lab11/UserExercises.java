@@ -45,9 +45,14 @@ public class UserExercises extends DBTable<User> {
         Map<Integer, List<String>> rtn = new HashMap<Integer, List<String>>();
         for(int i = 0; i < r.size();i++){
             if(r.get(i).getAge() >  min_age){
-                List<String> p = new ArrayList<>();
-                p.add(r.get(i).getUsername());
-                rtn.put(r.get(i).getAge(),p);
+                if(rtn.get(r.get(i).getAge()) != null) {
+                    List<String> p = new ArrayList<>();
+                    p.add(r.get(i).getUsername());
+                    rtn.put(r.get(i).getAge(), p);
+                }
+                else{
+                    rtn.get(r.get(i).getAge()).add(r.get(i).getUsername());
+                }
             }
         }
         return rtn; // FIX ME
