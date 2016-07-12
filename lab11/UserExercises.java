@@ -25,7 +25,7 @@ public class UserExercises extends DBTable<User> {
      */
     public double getAverageAge() {
         List<User> rtn = getEntries();
-        if(rtn == null)
+        if(rtn.size() == 0)
             return 0;
         double sum = 0;
         for(int i = 0; i < rtn.size();i++){
