@@ -293,7 +293,7 @@ public class AmoebaFamily implements Iterable<AmoebaFamily.Amoeba> {
             String maxStringSeen = name;
             for (Amoeba a : children) {
                 if (a.longestName().length() > maxStringSeen.length())
-                     maxStringSeen = a.name;
+                     maxStringSeen = a.longestName();
             }
             return maxStringSeen;
         }
