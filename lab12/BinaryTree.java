@@ -51,7 +51,7 @@ public class BinaryTree {
         if(root != null){
             return root.height();
         }
-        return -1;
+        return 0;
     }
 
     public boolean isCompletelyBalanced(){
@@ -178,7 +178,7 @@ public class BinaryTree {
 
         private int height() {
             if (left == null && right == null)
-                return 0;
+                return 1;
             else if(left == null)
                 return 1 + right.height();
             else if(right == null)
@@ -191,7 +191,7 @@ public class BinaryTree {
         }
 
         private boolean isCompletelyBalanced() {
-            if(left.height() == 0 && right.height() == 0)
+            if(left.height() == 1 && right.height() == 1)
                 return true;
             if(left.height() != right.height())
                 return false;
