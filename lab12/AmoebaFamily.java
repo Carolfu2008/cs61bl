@@ -38,6 +38,17 @@ public class AmoebaFamily implements Iterable<AmoebaFamily.Amoeba> {
      */
     public void makeNamesLowercase() {
         // Your goal is to make this as similar as possible to addChild
+        if (root != null){
+            makeNamesLowercase(root);
+        }
+    }
+    private void makeNamesLowercase(Amoeba a){
+        a.name = a.name.toLowerCase();
+        if(a.children != null) {
+            for (Amoeba x : a.children) {
+                makeNamesLowercase(x);
+            }
+        }
     }
 
     /**
@@ -47,6 +58,20 @@ public class AmoebaFamily implements Iterable<AmoebaFamily.Amoeba> {
      */
     public void replaceName(String currentName, String newName) {
         // Your goal is to make this as similar as possible to addChild
+        if (root != null){
+            replaceName(currentName, newName, root);
+        }
+    }
+    private void replaceName(String currentName, String newName, Amoeba a){
+        if (a.name.equals(currentName)) {
+            a.name = newName;
+        } else {
+            if(a.children != null) {
+                for (Amoeba x : a.children) {
+                    replaceName(currentName, newName, x);
+                }
+            }
+        }
     }
 
     /**
@@ -55,6 +80,17 @@ public class AmoebaFamily implements Iterable<AmoebaFamily.Amoeba> {
      */
     public void printFlat() {
         // Your goal is to make this as similar as possible to addChild
+        if (root != null){
+            printFlat(root);
+        }
+    }
+    private void printFlat(Amoeba a){
+        System.out.println(a.name);
+        if(a.children != null) {
+            for (Amoeba x : a.children) {
+                printFlat(x);
+            }
+        }
     }
 
     /**
@@ -68,6 +104,18 @@ public class AmoebaFamily implements Iterable<AmoebaFamily.Amoeba> {
      */
     public void print() {
         // YOUR CODE HERE
+        if (root != null){
+            print(root,"");
+        }
+    }
+    private void print(Amoeba a,String s){
+        System.out.println(s + a.name);
+        if(a.children != null) {
+            s += "\t";
+            for (Amoeba x : a.children) {
+                print(x, s);
+            }
+        }
     }
 
     /**
@@ -86,9 +134,23 @@ public class AmoebaFamily implements Iterable<AmoebaFamily.Amoeba> {
     public String longestName() {
         // your goal is to make this look as similar as possible to
         // longestNameLength
+        if (root != null) {
+            return root.longestName();
+        }
         return "";
     }
-
+    public int size() {
+        if (root != null) {
+            return root.size();
+        }
+        return 0;
+    }
+    public int height() {
+        if (root != null) {
+            return root.height();
+        }
+        return -1;
+    }
     /**
      * Returns an Iterator for this AmoebaFamily
      */
@@ -116,6 +178,7 @@ public class AmoebaFamily implements Iterable<AmoebaFamily.Amoeba> {
         family.addChild("Marge", "Hilary");
         System.out.println("Here's the family:");
         family.print();
+        System.out.println(family.size());
     }
 
     /**
@@ -224,6 +287,38 @@ public class AmoebaFamily implements Iterable<AmoebaFamily.Amoeba> {
                 maxLengthSeen = Math.max(maxLengthSeen, a.longestNameLength());
             }
             return maxLengthSeen;
+        }
+
+        public String longestName() {
+            String maxStringSeen = name;
+            for (Amoeba a : children) {
+                if (a.longestName().length() > maxStringSeen.length())
+                     maxStringSeen = a.name;
+            }
+            return maxStringSeen;
+        }
+        public int height() {
+            if (children.isEmpty()) {
+                return 0;
+            } else {
+                int bestSoFar = 0;
+                for (Amoeba a : children) {
+                    bestSoFar = Math.max(a.height(), bestSoFar);
+                }
+                return bestSoFar + 1;
+            }
+        }
+
+        public int size() {
+            if (children.isEmpty()) {
+                return 1;
+            } else {
+                int bestSoFar = 0;
+                for (Amoeba a : children) {
+                    bestSoFar += a.size();
+                }
+                return bestSoFar + 1;
+            }
         }
     }
 }

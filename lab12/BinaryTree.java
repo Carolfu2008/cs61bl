@@ -47,6 +47,18 @@ public class BinaryTree {
         }
     }
 
+    public int height(){
+        if(root != null){
+            return root.height();
+        }
+        return -1;
+    }
+
+    public boolean isCompletelyBalanced(){
+        if (root != null)
+            return root.isCompletelyBalanced();
+        return true;
+    }
     /**
      * Fills this BinaryTree with values a, b, and c
      */
@@ -62,6 +74,11 @@ public class BinaryTree {
             new TreeNode("e"), new TreeNode("f")), null), new TreeNode("c"));
     }
 
+    public void fillSampleTree3() {
+        root = new TreeNode("a", new TreeNode("b"),new TreeNode("c",
+                new TreeNode("d",new TreeNode("e"),new TreeNode("f")),null));
+    }
+
     /**
      * Creates two BinaryTrees and prints them out in inorder
      */
@@ -69,10 +86,17 @@ public class BinaryTree {
         BinaryTree t;
         t = new BinaryTree();
         print(t, "the empty tree");
+        System.out.println(t.isCompletelyBalanced());
         t.fillSampleTree1();
         print(t, "sample tree 1");
+        System.out.println(t.isCompletelyBalanced());
         t.fillSampleTree2();
         print(t, "sample tree 2");
+        System.out.println(t.isCompletelyBalanced());
+        t.fillSampleTree3();
+        print(t, "sample tree3");
+        System.out.println(t.isCompletelyBalanced());
+        System.out.println(t.height());
     }
 
     /**
@@ -150,6 +174,29 @@ public class BinaryTree {
             if (right != null) {
                 right.printInorder();
             }
+        }
+
+        private int height() {
+            if (left == null && right == null)
+                return 0;
+            else if(left == null)
+                return 1 + right.height();
+            else if(right == null)
+                return 1 +left.height();
+            else{
+                int leftHeight = left.height();
+                int rightHeight = right.height();
+                return 1 + Math.max(leftHeight,rightHeight);
+            }
+        }
+
+        private boolean isCompletelyBalanced() {
+            if(left.height() == 0 && right.height() == 0)
+                return true;
+            if(left.height() != right.height())
+                return false;
+            else
+                return left.isCompletelyBalanced() && right.isCompletelyBalanced();
         }
     }
 }
