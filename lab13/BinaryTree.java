@@ -10,6 +10,10 @@ public class BinaryTree {
         root = t;
     }
 
+    public TreeNode getRoot() {
+        return root;
+    }
+
     // Print the values in the tree in preorder: root value first,
     // then values in the left subtree (in preorder), then values
     // in the right subtree (in preorder).
@@ -35,7 +39,8 @@ public class BinaryTree {
     }
 
     public void fillSampleTree1() {
-        root = new TreeNode("a", new TreeNode("b"), new TreeNode("c"));
+        TreeNode temp = new TreeNode("a");
+        root = new TreeNode("a", temp, temp);
     }
 
     public void fillSampleTree2() {
