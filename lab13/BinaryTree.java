@@ -61,7 +61,7 @@ public class BinaryTree {
         System.out.println();
     }
 
-    private static class TreeNode {
+    public static class TreeNode {
 
         public Object item;
         public TreeNode left;
