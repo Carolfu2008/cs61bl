@@ -114,6 +114,7 @@ public class AmoebaFamily implements Iterable<AmoebaFamily.Amoeba>{
 		family.addChild("Marge", "Hilary");
 		System.out.println("Here's the family:");
 		family.print();
+
 	}
 
 	public class AmoebaIterator implements Iterator<Amoeba> {
@@ -127,17 +128,28 @@ public class AmoebaFamily implements Iterable<AmoebaFamily.Amoeba>{
 		// O(N) operations.
 
 		// You will supply the details of this class in a future lab.
-		ArrayList<Amoeba> fringe;
+		ArrayList<Amoeba> fringe = new ArrayList<Amoeba>();
 		public AmoebaIterator() {
-			throw new UnsupportedOperationException();
+			if (root != null){
+				fringe.add(root);
+			}
+			else throw new UnsupportedOperationException();
 		}
 
 		public boolean hasNext() {
-            throw new UnsupportedOperationException();
+            return !fringe.isEmpty();
+			//throw new UnsupportedOperationException();
 		}
 
 		public Amoeba next() {
-			throw new UnsupportedOperationException();
+			if (fringe.isEmpty())
+				throw new UnsupportedOperationException();
+			Amoeba rtn = fringe.get(0);
+			if (rtn.children != null) {
+				fringe.addAll(rtn.children);
+			}
+			fringe.remove(0);
+			return rtn;
 		}
 
 		public void remove() {
@@ -193,7 +205,7 @@ public class AmoebaFamily implements Iterable<AmoebaFamily.Amoeba>{
         	if (name.equals(currentName)) {
         		name = newName;
         	} else {
-        		for (Amoeba a : myChildren) {
+        		for (Amoeba a : children) {
         			a.replaceName(currentName, newName);
         		}
         	}
@@ -202,7 +214,7 @@ public class AmoebaFamily implements Iterable<AmoebaFamily.Amoeba>{
         
         public void printFlat() {
         	System.out.println(name);
-        	for (Amoeba a : myChildren) {
+        	for (Amoeba a : children) {
         		a.printFlat();
         	}
         }
@@ -220,8 +232,8 @@ public class AmoebaFamily implements Iterable<AmoebaFamily.Amoeba>{
 
         //Returns the length of the longest name of this Amoeba's children
         public int longestNameLength() {
-            int maxLengthSeen = myName.length();
-            for (Amoeba a : myChildren) {
+            int maxLengthSeen = name.length();
+            for (Amoeba a : children) {
                 maxLengthSeen = Math.max(maxLengthSeen, a.longestNameLength());
             }
             return maxLengthSeen;
