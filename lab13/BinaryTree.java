@@ -155,8 +155,10 @@ public class BinaryTree {
         t.fillSampleTree2();
         System.out.println(t.check());
         print(t, "sample tree 2");
-        exprTree("((a+(5*(a+b)))+(6*5))").optimize();
-        fibTree(4).print();
+        t = exprTree("((a+(5*(1+9)))+(6*5))");
+        t.optimize();
+        t.print();
+        //fibTree(4).print();
     }
 
     private static void print(BinaryTree t, String description) {
@@ -241,41 +243,68 @@ public class BinaryTree {
         }
 
         public void optimize() {
-
             if (left != null) {
                 left.optimize();
             }
             if (right != null) {
                 right.optimize();
             }
-            if (this.item.toString() == "+"){
-                if(this.right.item.toString().compareTo("0") >= 0 && this.right.item.toString().compareTo("9") <= 0
-                        && this.left.toString().compareTo("0") >= 0 && this.right.toString().compareTo("9") <= 0){
-                    this.item = new String(String.valueOf((char)((int)this.right.item + (int)this.left.item - '0')));
+            if (item.equals("+")){
+                if((left.item.equals("0")||left.item.equals("1")||left.item.equals("2")||left.item.equals("3")||left.item.equals("4")||
+                        left.item.equals("5")||left.item.equals("6")||left.item.equals("7")||left.item.equals("8")||left.item.equals("9"))&&
+                        (right.item.equals("0")||right.item.equals("1")||right.item.equals("2")||right.item.equals("3")||right.item.equals("4")||
+                                right.item.equals("5")||right.item.equals("6")||right.item.equals("7")||right.item.equals("8")||right.item.equals("9"))){
+                    System.out.println("PP");
+                    int k = Integer.valueOf(left.item.toString());
+                    int m = Integer.valueOf(right.item.toString());
+                    int g =k+m;
+                    item = new String(String.valueOf(g));
+                    System.out.println(item);
                     this.left = null;
                     this.right =null;
                 }
             }
-            if (this.item.toString() == "-"){
-                if(this.right.item.toString().compareTo("0") >= 0 && this.right.item.toString().compareTo("9") <= 0
-                        && this.left.toString().compareTo("0") >= 0 && this.right.toString().compareTo("9") <= 0){
-                    this.item = new String(String.valueOf((char)((int)this.right.item - (int)this.left.item - '0')));
+            if (item.equals("-")){
+                if((left.item.equals("0")||left.item.equals("1")||left.item.equals("2")||left.item.equals("3")||left.item.equals("4")||
+                        left.item.equals("5")||left.item.equals("6")||left.item.equals("7")||left.item.equals("8")||left.item.equals("9"))&&
+                        (right.item.equals("0")||right.item.equals("1")||right.item.equals("2")||right.item.equals("3")||right.item.equals("4")||
+                                right.item.equals("5")||right.item.equals("6")||right.item.equals("7")||right.item.equals("8")||right.item.equals("9"))){
+                    System.out.println("PP");
+                    int k = Integer.valueOf(left.item.toString());
+                    int m = Integer.valueOf(right.item.toString());
+                    int g =k-m;
+                    item = new String(String.valueOf(g));
+                    System.out.println(item);
                     this.left = null;
                     this.right =null;
                 }
             }
-            if (this.item.toString() == "*"){
-                if(this.right.item.toString().compareTo("0") >= 0 && this.right.item.toString().compareTo("9") <= 0
-                        && this.left.toString().compareTo("0") >= 0 && this.right.toString().compareTo("9") <= 0){
-                    this.item = new String(String.valueOf((char)((int)this.right.item * (int)this.left.item - '0')));
+            if (item.equals("*")){
+                if((left.item.equals("0")||left.item.equals("1")||left.item.equals("2")||left.item.equals("3")||left.item.equals("4")||
+                        left.item.equals("5")||left.item.equals("6")||left.item.equals("7")||left.item.equals("8")||left.item.equals("9"))&&
+                        (right.item.equals("0")||right.item.equals("1")||right.item.equals("2")||right.item.equals("3")||right.item.equals("4")||
+                                right.item.equals("5")||right.item.equals("6")||right.item.equals("7")||right.item.equals("8")||right.item.equals("9")||right.item.equals("10"))){
+                    System.out.println("PP");
+                    int k = Integer.valueOf(left.item.toString());
+                    int m = Integer.valueOf(right.item.toString());
+                    int g =k*m;
+                    item = new String(String.valueOf(g));
+                    System.out.println(item);
                     this.left = null;
                     this.right =null;
                 }
             }
-            if (this.item.toString() == "/"){
-                if(this.right.item.toString().compareTo("0") >= 0 && this.right.item.toString().compareTo("9") <= 0
-                        && this.left.toString().compareTo("0") >= 0 && this.right.toString().compareTo("9") <= 0){
-                    this.item = new String(String.valueOf((char)((int)this.right.item / (int)this.left.item - '0')));
+            if (item.equals("/")){
+                if((left.item.equals("0")||left.item.equals("1")||left.item.equals("2")||left.item.equals("3")||left.item.equals("4")||
+                        left.item.equals("5")||left.item.equals("6")||left.item.equals("7")||left.item.equals("8")||left.item.equals("9"))&&
+                        (right.item.equals("0")||right.item.equals("1")||right.item.equals("2")||right.item.equals("3")||right.item.equals("4")||
+                                right.item.equals("5")||right.item.equals("6")||right.item.equals("7")||right.item.equals("8")||right.item.equals("9"))){
+                    System.out.println("PP");
+                    int k = Integer.valueOf(left.item.toString());
+                    int m = Integer.valueOf(right.item.toString());
+                    int g =k/m;
+                    item = new String(String.valueOf(g));
+                    System.out.println(item);
                     this.left = null;
                     this.right =null;
                 }
