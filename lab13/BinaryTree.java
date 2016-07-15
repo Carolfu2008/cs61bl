@@ -105,7 +105,7 @@ public class BinaryTree {
     private TreeNode exprTreeHelper(String expr) {
         TreeNode rtn = null;
         if (expr.charAt(0) != '(') {
-            return new TreeNode(expr.charAt(0)); // you fill this in
+            return new TreeNode(expr.substring(0,1)); // you fill this in
         } else {
             // expr is a parenthesized expression.
             // Strip off the beginning and ending parentheses,
@@ -122,7 +122,7 @@ public class BinaryTree {
                 else if (expr.charAt(k) == ')' )p--;
                 else if (p == 0 && expr.charAt(k) != '(' && expr.charAt(k) != ')' && (expr.charAt(k) == '+' || expr.charAt(k) == '-'||expr.charAt(k) == '*' || expr.charAt(k) == '/') ){
                     opPos = k;
-                    rtn = new TreeNode(expr.charAt(k));
+                    rtn = new TreeNode(expr.substring(k,k+1));
                     break;
                 }
             }
