@@ -120,7 +120,7 @@ public class BinaryTree {
                     p++;
                 }
                 else if (expr.charAt(k) == ')' )p--;
-                else if (p == 0 && expr.charAt(k) != '(' && expr.charAt(k) != ')' && expr.charAt(k) <= '9' && expr.charAt(k) >= '0' ){
+                else if (p == 0 && expr.charAt(k) != '(' && expr.charAt(k) != ')' && (expr.charAt(k) == '+' || expr.charAt(k) == '-'||expr.charAt(k) == '*' || expr.charAt(k) == '/') ){
                     opPos = k;
                     rtn = new TreeNode(expr.charAt(k));
                     break;
@@ -155,7 +155,7 @@ public class BinaryTree {
         t.fillSampleTree2();
         System.out.println(t.check());
         print(t, "sample tree 2");
-
+        exprTree("((a+(5*(a+b)))+(6*5))").optimize();
         fibTree(4).print();
     }
 
@@ -260,6 +260,22 @@ public class BinaryTree {
                 if(this.right.item.toString().compareTo("0") >= 0 && this.right.item.toString().compareTo("9") <= 0
                         && this.left.toString().compareTo("0") >= 0 && this.right.toString().compareTo("9") <= 0){
                     this.item = new String(String.valueOf((char)((int)this.right.item - (int)this.left.item - '0')));
+                    this.left = null;
+                    this.right =null;
+                }
+            }
+            if (this.item.toString() == "*"){
+                if(this.right.item.toString().compareTo("0") >= 0 && this.right.item.toString().compareTo("9") <= 0
+                        && this.left.toString().compareTo("0") >= 0 && this.right.toString().compareTo("9") <= 0){
+                    this.item = new String(String.valueOf((char)((int)this.right.item * (int)this.left.item - '0')));
+                    this.left = null;
+                    this.right =null;
+                }
+            }
+            if (this.item.toString() == "/"){
+                if(this.right.item.toString().compareTo("0") >= 0 && this.right.item.toString().compareTo("9") <= 0
+                        && this.left.toString().compareTo("0") >= 0 && this.right.toString().compareTo("9") <= 0){
+                    this.item = new String(String.valueOf((char)((int)this.right.item / (int)this.left.item - '0')));
                     this.left = null;
                     this.right =null;
                 }
