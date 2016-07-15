@@ -116,12 +116,11 @@ public class BinaryTree {
             int p = 0;
             for (int k = 1; k < expr.length() - 1; k++) {
                 // you supply the missing code
-                System.out.println(expr.charAt(k));
                 if (expr.charAt(k)=='(') {
                     p++;
                 }
                 else if (expr.charAt(k) == ')' )p--;
-                else if (p == 0 && expr.charAt(k) != '(' && expr.charAt(k) != ')'){
+                else if (p == 0 && expr.charAt(k) != '(' && expr.charAt(k) != ')' && expr.charAt(k) <= '9' && expr.charAt(k) >= '0' ){
                     opPos = k;
                     rtn = new TreeNode(expr.charAt(k));
                     break;
