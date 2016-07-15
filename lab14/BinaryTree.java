@@ -3,7 +3,7 @@ import java.util.ArrayList;
 /** A Generic Binary Tree Class.
   * @author CS61BL Staff. */
 
-public class BinaryTree<T> implements Iterable<T> {
+public class BinaryTree<T> {
 
     /* The root node of the tree. */
     protected TreeNode root;
