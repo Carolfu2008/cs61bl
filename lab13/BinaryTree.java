@@ -113,13 +113,12 @@ public class BinaryTree {
             // in parentheses, and construct the two subtrees.
             int nesting = 0;
             int opPos = 0;
+            int p = 0;
             for (int k = 1; k < expr.length() - 1; k++) {
                 // you supply the missing code
-                int p = 0;
                 System.out.println(expr.charAt(k));
                 if (expr.charAt(k)=='(') {
                     p++;
-                    System.out.println("ppp");
                 }
                 else if (expr.charAt(k) == ')' )p--;
                 else if (p == 0 && expr.charAt(k) != '(' && expr.charAt(k) != ')'){
