@@ -70,7 +70,7 @@ public class BinaryTree {
 
     public void fillSampleTree1() {
         TreeNode temp = new TreeNode("a");
-        root = new TreeNode("a", new TreeNode("b"), new TreeNode("c"));
+        root = new TreeNode("a", temp, temp);
     }
 
     public void fillSampleTree2() {
