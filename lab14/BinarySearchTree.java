@@ -46,10 +46,11 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> {
 			return node;
 		int compare = node.item.compareTo(key);
 		if (compare > 0){
-			return add(node.left,key);
+			node.left = add(node.left,key);
 		}else{
-			return add(node.right,key);
+			node.right = add(node.right,key);
 		}
+		return node;
 	}
 	
 	/* Deletes the node with KEY. */
