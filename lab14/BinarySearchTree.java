@@ -22,10 +22,10 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> {
 		return contains(root,key);
 	}
 	private boolean contains(TreeNode node, T key){
-		if (node.item.equals(key))
-			return true;
 		if (node == null)
 			return false;
+		if (node.item.equals(key))
+			return true;
 		int compare = node.item.compareTo(key);
 		if (compare > 0){
 			return contains(node.left,key);
@@ -40,10 +40,10 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> {
 		root = add(root,key);
 	}
 	private TreeNode add(TreeNode node, T key){
-		if (node.item.equals(key))
-			return node;
 		if (node == null)
 			return new TreeNode(key);
+		if (node.item.equals(key))
+			return node;
 		int compare = node.item.compareTo(key);
 		if (compare > 0){
 			return add(node.left,key);
