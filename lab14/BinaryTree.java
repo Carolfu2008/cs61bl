@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 
 /** A Generic Binary Tree Class.
   * @author CS61BL Staff. */
@@ -89,9 +90,32 @@ public class BinaryTree<T> {
     }
     
     /* A helper method. */
-    private TreeNode listHelper(ArrayList<T> pre,  ArrayList<T> in) { 
+    private TreeNode listHelper(ArrayList<T> pre,  ArrayList<T> in) {
         //YOUR CODE HERE
-        return null;
+        if (pre.size() == 0)
+            return null;
+        TreeNode rtn = new TreeNode(pre.get(0));
+        int inIndex = in.indexOf(pre.get((0)));
+        pre.remove(0);
+        in.remove(inIndex);
+        if (inIndex == 0){
+            return rtn;
+        }
+        ArrayList<T> preRight = new ArrayList<T>();
+        ArrayList<T> inRight = new ArrayList<T>();
+        ArrayList<T> preLeft = new ArrayList<T>();
+        ArrayList<T> inLeft = new ArrayList<T>();;
+        for(int i = 0; i < inIndex;i++) {
+            preLeft.add(pre.get(i));
+            inLeft.add(in.get(i));
+        }
+        for(int i = inIndex; i < pre.size();i++) {
+            preRight.add(pre.get(i));
+            inRight.add(in.get(i));
+        }
+        rtn.left = listHelper(preLeft,inLeft);
+        rtn.right = listHelper(preRight,inRight);
+        return rtn;
     }
     
     /** Print the values in the tree in preorder: root value first,
@@ -120,11 +144,30 @@ public class BinaryTree<T> {
 
     /* Used for testing. */
     protected static void print(BinaryTree<?> t, String description) {
-        System.out.println(description + " in preorder");
+        System.out.println(description + " in  preorder");
         t.printPreorder();
         System.out.println(description + " in inorder");
         t.printInorder();
         System.out.println();
+    }
+
+    public static void main(String args[]){
+        ArrayList<String> pre = new ArrayList<String>();
+        ArrayList<String> in = new ArrayList<String>();
+        pre.add("A");
+        pre.add("B");
+        pre.add("D");
+        pre.add("E");
+        pre.add("C");
+        pre.add("F");
+        in.add("D");
+        in.add("B");
+        in.add("E");
+        in.add("A");
+        in.add("F");
+        in.add("C");
+        BinaryTree<String> tree = new BinaryTree<String>(pre, in);
+        print(tree,"");
     }
 
 }
