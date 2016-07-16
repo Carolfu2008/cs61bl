@@ -144,7 +144,7 @@ public class BinaryTree<T> {
 
     /* Used for testing. */
     protected static void print(BinaryTree<?> t, String description) {
-        System.out.println(description + " in  preorder");
+        System.out.println(description + " in preorder");
         t.printPreorder();
         System.out.println(description + " in inorder");
         t.printInorder();
