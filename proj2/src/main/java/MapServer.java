@@ -93,7 +93,7 @@ public class MapServer {
                     getRequestParams(req, REQUIRED_RASTER_REQUEST_PARAMS);
             /* Required to have valid raster params */
             validateRequestParameters(rasterParams, REQUIRED_RASTER_REQUEST_PARAMS);
-            /* The png image is written to the ByteArrayOutputStream */
+            /* Create the Map for return parameters. */
             Map<String, Object> rasteredImgParams = new HashMap<>();
             /* getMapRaster() does almost all the work for this API call */
             BufferedImage im = getMapRaster(rasterParams, rasteredImgParams);
