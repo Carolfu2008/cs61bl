@@ -51,7 +51,7 @@ public class SimpleNameMap {
     boolean containsKey(String key) {
         int index = key.hashCode();
         for (int i = 0; i < array[index].size(); i++){
-            if (key.equals(array[index].get(i))) {
+            if (key.equals(array[index].get(i)._key)) {
                 return true;
             }
         }
@@ -92,9 +92,10 @@ public class SimpleNameMap {
         for (int i = 0; i < array[index].size(); i++){
             if (key.equals(array[index].get(i))) {
                 array[index].remove(i);
+                return true;
             }
         }
         return false;
     }
-    
+
 }
