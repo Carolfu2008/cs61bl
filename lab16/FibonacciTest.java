@@ -1,8 +1,10 @@
-import junit.framework.TestCase;
+import static org.junit.Assert.*;
+import org.junit.Test;
 
-public class FibonacciTest extends TestCase {
+public class FibonacciTest {
 
 	// This test should pass already
+    @Test
 	public void testFibResult() {
 		Fibonacci fib = new Fibonacci(0);
 		assertTrue(fib.result == 0);
@@ -29,6 +31,7 @@ public class FibonacciTest extends TestCase {
 	 * recursive calls in fib(n) if you have already calculated the value for
 	 * fib(n)
 	 */
+    @Test
 	public void testFibCalls() {
 		Fibonacci fib = new Fibonacci(0);
 		assertTrue(fib.callsToFib == 1);

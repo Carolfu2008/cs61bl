@@ -1,11 +1,13 @@
-import junit.framework.TestCase;
+import static org.junit.Assert.*;
+import org.junit.Test;
 
-public class PhoneBookTest extends TestCase {
+public class PhoneBookTest {
 
 	/*
 	 * Tests that you can add a person,number pair to the book and later access
 	 * the number for that person.
 	 */
+    @Test
 	public void testCanAddAndGet() {
 		PhoneBook myBook = new PhoneBook();
 		Person person1 = new Person("Sally");
@@ -20,6 +22,7 @@ public class PhoneBookTest extends TestCase {
 	 * Tests that you can add a second phone number for the same person and that
 	 * only the second phone number remains.
 	 */
+    @Test
 	public void testCanChangeNumber() {
 		PhoneBook myBook = new PhoneBook();
 		Person person1 = new Person("Sally");
@@ -37,6 +40,7 @@ public class PhoneBookTest extends TestCase {
 	 * Tests that if you add a person, number pair then modify the person, you
 	 * can't get the number out of the phone book again.
 	 */
+    @Test
 	public void testCantAccessNumIfChangePersonObj() {
 		PhoneBook myBook = new PhoneBook();
 		Person person1 = new Person("Jane");
@@ -61,6 +65,7 @@ public class PhoneBookTest extends TestCase {
 	 * Also tests that if you add a person, number pair then modify the person,
 	 * you can't get the number out of the phone book again.
 	 */
+    @Test
 	public void testCantAccessNumIfChangePersonObj2() {
 		PhoneBook myBook = new PhoneBook();
 		Person person1 = new Person("Jane");
@@ -80,6 +85,7 @@ public class PhoneBookTest extends TestCase {
 	 * that the change will be reflected the next time you look up that phone
 	 * number.
 	 */
+    @Test
 	public void testCanModifyPhoneNumberAlreadyInBook() {
 		PhoneBook myBook = new PhoneBook();
 		Person person1 = new Person("Jane");
