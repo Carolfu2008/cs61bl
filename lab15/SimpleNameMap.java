@@ -1,3 +1,7 @@
+import javax.xml.soap.Node;
+import java.lang.reflect.Array;
+import java.util.LinkedList;
+
 /**
  *  A simple mapping from string names to string values backed by an array.
  *  Supports only A-Z for the first character of the key name. Values can be
@@ -6,7 +10,7 @@
  *  @author You
  */
 public class SimpleNameMap {
-
+    LinkedList<Entry>[] array = new LinkedList[26];
     /** A wrapper class for holding each (KEY, VALUE) pair. */
     private static class Entry {
 
@@ -41,4 +45,56 @@ public class SimpleNameMap {
         return 'A' <= key.charAt(0) && key.charAt(0) <= 'Z';
     }
 
+    /**
+     * Returns true if the map contains the KEY.
+     */
+    boolean containsKey(String key) {
+        int index = key.hashCode();
+        for (int i = 0; i < array[index].size(); i++){
+            if (key.equals(array[index].get(i))) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Returns the value for the specified KEY.
+     */
+    String get(String key) {
+        int index = key.hashCode();
+        for (int i = 0; i < array[index].size(); i++){
+            if (key.equals(array[index].get(i))) {
+                return array[index].get(i)._value;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Put a (KEY, VALUE) pair into this map.
+     */
+    void put(String key, String value) {
+        int index = key.hashCode();
+        if (array[index] == null) {
+            array[index] = new LinkedList();
+            array[index].add(new Entry(key,value));
+        }else{
+            array[index].add(new Entry(key,value));
+        }
+    }
+
+    /**
+     * Remove a single entry, KEY, from this table and returns true if successful.
+     */
+    boolean remove(String key) {
+        int index = key.hashCode();
+        for (int i = 0; i < array[index].size(); i++){
+            if (key.equals(array[index].get(i))) {
+                array[index].remove(i);
+            }
+        }
+        return false;
+    }
+    
 }
