@@ -3,6 +3,7 @@ import java.util.*;
 public class JugSolver {
 	private int desiredAmt;
 	private int capacity[];
+	private HashSet configuration;
 	
 	public JugSolver (int jug0size, int jug1size, int jug2size, int desired) {
 		capacity = new int [3];
@@ -10,6 +11,7 @@ public class JugSolver {
 		capacity[1] = jug1size;
 		capacity[2] = jug2size;
 		desiredAmt = desired;
+		configuration = new HashSet();
 	}
 	
 	// Try to solve the puzzle, starting at configuration b.
@@ -20,6 +22,12 @@ public class JugSolver {
 			return true;
 		}
 		// Your code at this line, and possibly below
+		JugContents b = new JugContents(jugsObject);
+		if (configuration.contains(b.toString())) {
+			return false;
+		}else{
+			configuration.add(b.toString());
+		}
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 3; j++) {
 				if (i != j && tryPouring (pour(jugsObject, i, j))) {
@@ -53,7 +61,7 @@ public class JugSolver {
 		}
 	}
 
-	private static boolean DEBUGGING = false;
+	private static boolean DEBUGGING = true;
 
 	private static void debugPrint (String s) {
 		if (DEBUGGING) {
