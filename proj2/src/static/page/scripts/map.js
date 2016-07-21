@@ -36,8 +36,6 @@ $( document ).ready(function() {
         host = "http://localhost:4567"
     }
     var raster_server = host + "/raster"
-    var route_server = host + "/route"
-    var clear_route = host + "/clear_route"
     var search = host + "/search"
     map = document.getElementById("map");
     dest = document.getElementById("dest");
@@ -110,18 +108,6 @@ $( document ).ready(function() {
       });
     });
 
-    $('#clear').click(function handler(evt) {
-        evt.preventDefault();
-        $.get({
-            async: true,
-            url: clear_route,
-            success: function(data) {
-                dest.style.visibility = 'hidden';
-                update();
-            },
-        });
-    });
-
     $('body').dblclick(function handler(evt) {
         if (route_params["start_lon"] && route_params["end_lon"]) { //finished routing, reset routing
             route_params = {};
@@ -129,7 +115,6 @@ $( document ).ready(function() {
         if (route_params["start_lon"]) { // began routing already but not finished
             route_params["end_lon"] = params["ullon"] + evt.pageX * wdpp;
             route_params["end_lat"] = params["ullat"] - evt.pageY * hdpp;
-            updateRoute();
             dest.style.visibility = 'visible';
             update();
         } else {
@@ -274,7 +259,7 @@ $( document ).ready(function() {
         $.get({
             async: false,
             url: raster_server,
-            data: params,
+            data: jQuery.extend(params, route_params),
             success: function(data) {
                 if (data.query_success) {
                     console.log("Updating map");
@@ -313,15 +298,5 @@ $( document ).ready(function() {
             params["lrlon"] > lrlon_bound || params["lrlat"] < lrlat_bound;
     }
 
-    function updateRoute() {
-        $.get({
-            async: true,
-            url: route_server,
-            data: route_params,
-            success: function(data) {
-                updateImg();
-            },
-        });
-    }
 
 });
