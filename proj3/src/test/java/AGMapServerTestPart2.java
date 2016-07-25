@@ -15,7 +15,7 @@ import static org.junit.Assert.assertTrue;
 public class AGMapServerTestPart2 {
     static List<TestParams> params;
     static final double doubleThreshhold = 0.0000000000001;
-    static final double SSD_THRESHHOLD = 2.5;
+    static final double SSD_THRESHHOLD = 26942;
     static int passedRaster = 0;
     static int passedRoute = 0;
     static boolean initialized = false;
