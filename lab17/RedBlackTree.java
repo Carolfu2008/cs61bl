@@ -67,15 +67,26 @@ public class RedBlackTree<T extends Comparable<T>> {
 
         RedBlackTree ans= new RedBlackTree(test);
         ans.root = ans.rotateRight(ans.root);
+        ans.root=ans.rotateLeft(ans.root);
 
-
-        System.out.println(ans.root.item+"   "+ans.root.isBlack);
-        System.out.println(ans.root.left.item+"   "+ans.root.left.isBlack);
-        System.out.println(ans.root.right.item+"   "+ans.root.right.isBlack);
-        System.out.println(ans.root.right.right.item+"   "+ans.root.right.right.isBlack);
-        System.out.println(ans.root.right.left.item+"   "+ans.root.right.left.isBlack);
+        print(ans.root,0);
+        //System.out.println(ans.root.item+"   "+ans.root.isBlack);
+        //System.out.println(ans.root.left.item+"   "+ans.root.left.isBlack);
+        //System.out.println(ans.root.right.item+"   "+ans.root.right.isBlack);
+        //System.out.println(ans.root.right.right.item+"   "+ans.root.right.right.isBlack);
+        //System.out.println(ans.root.right.left.item+"   "+ans.root.right.left.isBlack);
     }
-
+    private static void print(RBTreeNode node, int d) {
+        if (node == null) {
+            return;
+        }
+        for (int i = 0; i < d; i++) {
+            System.out.print("  ");
+        }
+        System.out.println(node.item+" " +node.isBlack);
+        print(node.left, d + 1);
+        print(node.right, d + 1);
+    }
 
     /**
      * Rotates the (sub)tree rooted at given node to the right, and returns the
@@ -87,7 +98,7 @@ public class RedBlackTree<T extends Comparable<T>> {
      */
     RBTreeNode<T> rotateRight(RBTreeNode<T> node) {
         // YOUR CODE HERE
-        RBTreeNode rtn = new RBTreeNode(true,node.left.item,node.left.left,null);
+        RBTreeNode rtn = new RBTreeNode(node.isBlack,node.left.item,node.left.left,null);
         rtn.right = new RBTreeNode(false, node.item,node.left.right,node.right );
         return rtn;
     }
@@ -102,7 +113,7 @@ public class RedBlackTree<T extends Comparable<T>> {
      */
     RBTreeNode<T> rotateLeft(RBTreeNode<T> node) {
         // YOUR CODE HERE
-        RBTreeNode rtn = new RBTreeNode(true,node.right.item,node.right.right,null);
+        RBTreeNode rtn = new RBTreeNode(node.isBlack,node.right.item,null,node.right.right);
         rtn.left = new RBTreeNode(false, node.item,node.right.left,node.left );
         return rtn;
     }
