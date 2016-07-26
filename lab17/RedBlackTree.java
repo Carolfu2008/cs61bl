@@ -69,6 +69,7 @@ public class RedBlackTree<T extends Comparable<T>> {
         ans.root = ans.rotateRight(ans.root);
         ans.root=ans.rotateLeft(ans.root);
         ans.insert(ans.root,'g');
+        ans.insert(ans.root,'h');
 
         print(ans.root,0);
         //System.out.println(ans.root.item+"   "+ans.root.isBlack);
@@ -99,9 +100,13 @@ public class RedBlackTree<T extends Comparable<T>> {
      */
     RBTreeNode<T> rotateRight(RBTreeNode<T> node) {
         // YOUR CODE HERE
-        RBTreeNode rtn = new RBTreeNode(node.isBlack,node.left.item,node.left.left,null);
-        rtn.right = new RBTreeNode(false, node.item,node.left.right,node.right );
-        return rtn;
+        try {
+            RBTreeNode rtn = new RBTreeNode(node.isBlack, node.left.item, node.left.left, null);
+            rtn.right = new RBTreeNode(false, node.item, node.left.right, node.right);
+            return rtn;
+        }catch(NullPointerException ex){
+            return node;
+        }
     }
 
     /**
@@ -114,9 +119,13 @@ public class RedBlackTree<T extends Comparable<T>> {
      */
     RBTreeNode<T> rotateLeft(RBTreeNode<T> node) {
         // YOUR CODE HERE
-        RBTreeNode rtn = new RBTreeNode(node.isBlack,node.right.item,null,node.right.right);
-        rtn.left = new RBTreeNode(false, node.item,node.left,node.right.left);
-        return rtn;
+        try {
+            RBTreeNode rtn = new RBTreeNode(node.isBlack, node.right.item, null, node.right.right);
+            rtn.left = new RBTreeNode(false, node.item, node.left, node.right.left);
+            return rtn;
+        }catch (NullPointerException ex){
+            return node;
+        }
     }
 
     /**
@@ -197,9 +206,7 @@ public class RedBlackTree<T extends Comparable<T>> {
         // handle case A
         if (isRed(node.left) && isRed(node.right)) {
             // YOUR CODE HERE
-           node.isBlack = false;
-            node.left.isBlack = true;
-            node.right.isBlack = true;
+           flipColors(node);
         }
         return node;
     }
