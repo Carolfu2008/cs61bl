@@ -87,14 +87,8 @@ public class RedBlackTree<T extends Comparable<T>> {
      */
     RBTreeNode<T> rotateRight(RBTreeNode<T> node) {
         // YOUR CODE HERE
-        RBTreeNode rtn;
-        rtn = node.left;
-        node.left = null;
-        RBTreeNode temp = rtn.right;
-        rtn.right = node;
-        node.left =temp;
-        node.isBlack=false;
-        rtn.isBlack=true;
+        RBTreeNode rtn = new RBTreeNode(true,node.left.item,node.left.left,null);
+        rtn.right = new RBTreeNode(false, node.item,node.left.right,node.right );
         return rtn;
     }
 
@@ -108,14 +102,8 @@ public class RedBlackTree<T extends Comparable<T>> {
      */
     RBTreeNode<T> rotateLeft(RBTreeNode<T> node) {
         // YOUR CODE HERE
-        RBTreeNode rtn = null;
-        rtn = node.right;
-        node.right = null;
-        RBTreeNode temp = rtn.left;
-        rtn.left = node;
-        node.right =temp;
-        node.isBlack=false;
-        rtn.isBlack=true;
+        RBTreeNode rtn = new RBTreeNode(true,node.right.item,node.right.right,null);
+        rtn.left = new RBTreeNode(false, node.item,node.right.left,node.left );
         return rtn;
     }
 
