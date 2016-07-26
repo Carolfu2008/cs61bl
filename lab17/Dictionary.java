@@ -17,10 +17,14 @@ public class Dictionary {
 	 */
 	public void addDefinition(String word, String definition) {
 		// YOUR CODE HERE
-		myStartingLetters.put(word.charAt(0),new TrieNode());
+		if(!myStartingLetters.containsKey(word.charAt(0))) {
+			myStartingLetters.put(word.charAt(0), new TrieNode());
+		}
 		TrieNode p = myStartingLetters.get(word.charAt(0));
 		for (int i = 1; i < word.length(); i++){
-			p.myNextLetters.put(word.charAt(i), new TrieNode());
+			if(!p.myNextLetters.containsKey(word.charAt(i))) {
+				p.myNextLetters.put(word.charAt(i), new TrieNode());
+			}
 			p = p.myNextLetters.get(word.charAt(i));
 			if (i == word.length()-1){
 				//System.out.println(definition);
@@ -57,6 +61,7 @@ public class Dictionary {
 	public static void main(String[] args){
 		Dictionary test = new Dictionary();
 		test.addDefinition("too","qq");
+		test.addDefinition("took","pp");
 		System.out.println(test.myStartingLetters.get('t').myNextLetters.get('o').myNextLetters.get('o').myDefinition);
 		System.out.println(test.lookupDefinition("too"));
 	}
