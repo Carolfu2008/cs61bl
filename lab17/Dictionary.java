@@ -21,10 +21,10 @@ public class Dictionary {
 		TrieNode p = myStartingLetters.get(word.charAt(0));
 		for (int i = 1; i < word.length(); i++){
 			p.myNextLetters.put(word.charAt(i), new TrieNode());
+			p = p.myNextLetters.get(word.charAt(i));
 			if (i == word.length()-1){
 				p.myDefinition = definition;
 			}
-			p = p.myNextLetters.get(word.charAt(i));
 		}
 	}
 
