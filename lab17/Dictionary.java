@@ -17,6 +17,15 @@ public class Dictionary {
 	 */
 	public void addDefinition(String word, String definition) {
 		// YOUR CODE HERE
+		myStartingLetters.put(word.charAt(0),new TrieNode());
+		TrieNode p = myStartingLetters.get(word.charAt(0));
+		for (int i = 1; i < word.length(); i++){
+			p.myNextLetters.put(word.charAt(i), new TrieNode());
+			if (i == word.length()-1){
+				p.myDefinition = definition;
+			}
+			p = p.myNextLetters.get(word.charAt(i));
+		}
 	}
 
 	/**
@@ -25,7 +34,11 @@ public class Dictionary {
 	 */
 	public String lookupDefinition(String word) {
 		// YOUR CODE HERE
-		return null;
+		TrieNode p=myStartingLetters.get(word.charAt(0));
+		for(int i = 1; i < word.length();i++) {
+			p=p.myNextLetters.get(word.charAt(i));
+		}
+		return p.myDefinition;
 	}
 
 	private class TrieNode {
