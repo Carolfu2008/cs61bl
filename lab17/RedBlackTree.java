@@ -1,3 +1,5 @@
+import java.lang.reflect.Array;
+
 /**
  * Simple Red-Black tree implementation.
  *
@@ -34,8 +36,43 @@ public class RedBlackTree<T extends Comparable<T>> {
      */
     RBTreeNode<T> buildRedBlackTree(BTree.Node<T> r) {
         // YOUR CODE HERE
-        return null;
+        RBTreeNode rtn = null;
+        if (r == null){
+            rtn = null;
+        } else if (r.getItemCount() == 3){
+            rtn = new RBTreeNode(true,r.getItemAt(1));
+            rtn.left = new RBTreeNode(false,r.getItemAt(0),buildRedBlackTree(r.getChildAt(0)),buildRedBlackTree(r.getChildAt(1)));
+            rtn.right = new RBTreeNode(false,r.getItemAt(2),buildRedBlackTree(r.getChildAt(2)),buildRedBlackTree(r.getChildAt(3)));
+        } else if (r.getItemCount() == 2) {
+            rtn = new RBTreeNode(true,r.getItemAt(0),buildRedBlackTree(r.getChildAt(0)),null);
+            rtn.right = new RBTreeNode(false,r.getItemAt(1),buildRedBlackTree(r.getChildAt(1)),buildRedBlackTree(r.getChildAt(2)));
+        } else if (r.getItemCount() == 1) {
+            rtn = new RBTreeNode(true,r.getItemAt(0),buildRedBlackTree(r.getChildAt(0)),buildRedBlackTree(r.getChildAt(1)));
+        }
+        return rtn;
     }
+    public static void main(String[] args) {
+        BTree test = new BTree();
+        BTree.TwoThreeFourNode x = new BTree.TwoThreeFourNode(11,20);
+        test.root = x;
+        BTree.TwoThreeFourNode y = new BTree.TwoThreeFourNode(9,10);
+        BTree.TwoThreeFourNode z = new BTree.TwoThreeFourNode(12);
+        BTree.TwoThreeFourNode w = new BTree.TwoThreeFourNode(30);
+        x.setChildAt(0,y);
+        x.setChildAt(1,z);
+        x.setChildAt(2,w);
+
+
+        RedBlackTree ans= new RedBlackTree(test);
+
+        System.out.println(ans.root.item+"   "+ans.root.isBlack);
+        System.out.println(ans.root.left.item+"   "+ans.root.left.isBlack);
+        System.out.println(ans.root.left.right.item+"   "+ans.root.left.right.isBlack);
+        System.out.println(ans.root.right.item+"   "+ans.root.right.isBlack);
+        System.out.println(ans.root.right.right.item+"   "+ans.root.right.right.isBlack);
+        System.out.println(ans.root.right.left.item+"   "+ans.root.right.left.isBlack);
+    }
+
 
     /**
      * Rotates the (sub)tree rooted at given node to the right, and returns the
@@ -110,7 +147,7 @@ public class RedBlackTree<T extends Comparable<T>> {
         // Insert (return) new red leaf node.
         if (node == null) {
             // YOUR CODE HERE
-
+            return new RBTreeNode(false,item);
         }
 
         // Handle normal binary search tree insertion.
@@ -184,5 +221,7 @@ public class RedBlackTree<T extends Comparable<T>> {
             this.right = right;
         }
     }
+
+
 
 }
