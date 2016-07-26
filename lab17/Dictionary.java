@@ -41,14 +41,15 @@ public class Dictionary {
 	 */
 	public String lookupDefinition(String word) {
 		// YOUR CODE HERE
-		if (word == null){
+		try {
+			TrieNode p = myStartingLetters.get(word.charAt(0));
+			for (int i = 1; i < word.length(); i++) {
+				p = p.myNextLetters.get(word.charAt(i));
+			}
+			return p.myDefinition;
+		}catch (NullPointerException ex){
 			return null;
 		}
-		TrieNode p=myStartingLetters.get(word.charAt(0));
-		for(int i = 1; i < word.length();i++) {
-			p=p.myNextLetters.get(word.charAt(i));
-		}
-		return p.myDefinition;
 	}
 
 	private class TrieNode {
@@ -65,13 +66,13 @@ public class Dictionary {
 	}
 	public static void main(String[] args){
 		Dictionary test = new Dictionary();
-		test.addDefinition("took","qq");
-		test.addDefinition("took","qq");
-		test.addDefinition("toke","pp");
-		test.addDefinition("abcdefsdfs","aa");
+		test.addDefinition("can","qq");
+		test.addDefinition("cap","qq");
+		test.addDefinition("cat","gg");
+		test.addDefinition("aBcdefsdfs","aa");
 		//System.out.println(test.myStartingLetters.get('t').myNextLetters.get('o').myNextLetters.get('o').myDefinition);
-		System.out.println(test.lookupDefinition("took"));
-		System.out.println(test.lookupDefinition("toke"));
-		System.out.println(test.lookupDefinition("abcdefsdfs"));
+		System.out.println(test.lookupDefinition("can"));
+		System.out.println(test.lookupDefinition("cat"));
+		System.out.println(test.lookupDefinition("cap"));
 	}
 }
