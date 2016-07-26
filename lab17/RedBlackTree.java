@@ -53,21 +53,24 @@ public class RedBlackTree<T extends Comparable<T>> {
     }
     public static void main(String[] args) {
         BTree test = new BTree();
-        BTree.TwoThreeFourNode x = new BTree.TwoThreeFourNode(11,20);
+        BTree.TwoThreeFourNode x = new BTree.TwoThreeFourNode('7');
         test.root = x;
-        BTree.TwoThreeFourNode y = new BTree.TwoThreeFourNode(9,10);
-        BTree.TwoThreeFourNode z = new BTree.TwoThreeFourNode(12);
-        BTree.TwoThreeFourNode w = new BTree.TwoThreeFourNode(30);
+        BTree.TwoThreeFourNode y = new BTree.TwoThreeFourNode('1');
+        BTree.TwoThreeFourNode z = new BTree.TwoThreeFourNode('a');
+        BTree.TwoThreeFourNode w = new BTree.TwoThreeFourNode('b');
+        BTree.TwoThreeFourNode q = new BTree.TwoThreeFourNode('c');
         x.setChildAt(0,y);
-        x.setChildAt(1,z);
-        x.setChildAt(2,w);
+        x.setChildAt(1,q);
+        y.setChildAt(0,z);
+        y.setChildAt(1,w);
 
 
         RedBlackTree ans= new RedBlackTree(test);
+        ans.root = ans.rotateRight(ans.root);
+
 
         System.out.println(ans.root.item+"   "+ans.root.isBlack);
         System.out.println(ans.root.left.item+"   "+ans.root.left.isBlack);
-        System.out.println(ans.root.left.right.item+"   "+ans.root.left.right.isBlack);
         System.out.println(ans.root.right.item+"   "+ans.root.right.isBlack);
         System.out.println(ans.root.right.right.item+"   "+ans.root.right.right.isBlack);
         System.out.println(ans.root.right.left.item+"   "+ans.root.right.left.isBlack);
@@ -84,7 +87,15 @@ public class RedBlackTree<T extends Comparable<T>> {
      */
     RBTreeNode<T> rotateRight(RBTreeNode<T> node) {
         // YOUR CODE HERE
-        return null;
+        RBTreeNode rtn;
+        rtn = node.left;
+        node.left = null;
+        RBTreeNode temp = rtn.right;
+        rtn.right = node;
+        node.left =temp;
+        node.isBlack=false;
+        rtn.isBlack=true;
+        return rtn;
     }
 
     /**
@@ -97,7 +108,15 @@ public class RedBlackTree<T extends Comparable<T>> {
      */
     RBTreeNode<T> rotateLeft(RBTreeNode<T> node) {
         // YOUR CODE HERE
-        return null;
+        RBTreeNode rtn = null;
+        rtn = node.right;
+        node.right = null;
+        RBTreeNode temp = rtn.left;
+        rtn.left = node;
+        node.right =temp;
+        node.isBlack=false;
+        rtn.isBlack=true;
+        return rtn;
     }
 
     /**
