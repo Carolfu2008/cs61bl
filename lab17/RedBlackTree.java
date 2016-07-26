@@ -114,7 +114,7 @@ public class RedBlackTree<T extends Comparable<T>> {
     RBTreeNode<T> rotateLeft(RBTreeNode<T> node) {
         // YOUR CODE HERE
         RBTreeNode rtn = new RBTreeNode(node.isBlack,node.right.item,null,node.right.right);
-        rtn.left = new RBTreeNode(false, node.item,node.right.left,node.left );
+        rtn.left = new RBTreeNode(false, node.item,node.left,node.right.left);
         return rtn;
     }
 
