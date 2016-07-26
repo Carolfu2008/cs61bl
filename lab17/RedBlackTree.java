@@ -68,6 +68,7 @@ public class RedBlackTree<T extends Comparable<T>> {
         RedBlackTree ans= new RedBlackTree(test);
         ans.root = ans.rotateRight(ans.root);
         ans.root=ans.rotateLeft(ans.root);
+        ans.insert(ans.root,'g');
 
         print(ans.root,0);
         //System.out.println(ans.root.item+"   "+ans.root.isBlack);
@@ -184,19 +185,19 @@ public class RedBlackTree<T extends Comparable<T>> {
         // handle case C and "Right-leaning" situation.
         if (isRed(node.right) && !isRed(node.left)) {
             // YOUR CODE HERE
-            rotateLeft(node.left);
+            node = rotateLeft(node);
         }
 
         // handle case B
         if (isRed(node.left) && isRed(node.left.left)) {
             // YOUR CODE HERE
-            rotateRight(node);
+            node = rotateRight(node);
         }
 
         // handle case A
         if (isRed(node.left) && isRed(node.right)) {
             // YOUR CODE HERE
-            node.isBlack = false;
+           node.isBlack = false;
             node.left.isBlack = true;
             node.right.isBlack = true;
         }
