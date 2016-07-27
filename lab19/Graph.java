@@ -7,24 +7,24 @@ import java.util.Stack;
 
 public class Graph implements Iterable<Integer>{
 
-    private LinkedList<Edge>[] myAdjLists;
-    private int myVertexCount;
-    private int myStartVertex;
+    private LinkedList<Edge>[] adjLists;
+    private int vertexCount;
+    private int startVertex;
 
     // Initialize a graph with the given number of vertices and no edges.
     public Graph(int numVertices) {
-        myAdjLists = new LinkedList[numVertices];
-        myStartVertex = 0;
+        adjLists = new LinkedList[numVertices];
+        startVertex = 0;
         for (int k = 0; k < numVertices; k++) {
-            myAdjLists[k] = new LinkedList<Edge>();
+            adjLists[k] = new LinkedList<Edge>();
         }
-        myVertexCount = numVertices;
+        vertexCount = numVertices;
     }
 
     // Change the vertex the iterator will start DFS from
     public void setStartVertex(int v){
-        if (v < myVertexCount && v >= 0){
-            myStartVertex = v;
+        if (v < vertexCount && v >= 0){
+            startVertex = v;
         } else {
             throw new IllegalArgumentException("Cannot set iteration start vertex to " + v + ".");
         }
@@ -177,26 +177,26 @@ public class Graph implements Iterable<Integer>{
 
     private class Edge {
 
-        private Integer myFrom;
-        private Integer myTo;
-        private Object myEdgeInfo;
+        private Integer from;
+        private Integer to;
+        private Object edgeInfo;
 
         public Edge(int from, int to, Object info) {
-            myFrom = new Integer(from);
-            myTo = new Integer(to);
-            myEdgeInfo = info;
+            from = new Integer(from);
+            to = new Integer(to);
+            edgeInfo = info;
         }
 
         public Integer to() {
-            return myTo;
+            return to;
         }
 
         public Object info() {
-            return myEdgeInfo;
+            return edgeInfo;
         }
 
         public String toString() {
-            return "(" + myFrom + "," + myTo + ",dist=" + myEdgeInfo + ")";
+            return "(" + from + "," + to + ",dist=" + edgeInfo + ")";
         }
 
     }
