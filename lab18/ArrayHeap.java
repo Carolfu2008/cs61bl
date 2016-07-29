@@ -205,12 +205,13 @@ public class ArrayHeap<T> {
 		for (int i = 1;i < contents.size();i++) {
 			if (getNode(i).item.equals(item)) {
 				getNode(i).priority = priority;
-				if (getNode(getParentOf(i)).priority > priority){
+				if (getParentOf(i) != 0 &&getNode(getParentOf(i)).priority > priority){
 					bubbleUp(i);
 				}
-				if (getNode(getLeftOf(i)).priority < priority || getNode(getRightOf(i)).priority < priority){
+				if (getLeftOf(i)<contents.size() && getRightOf(i)<contents.size() && getNode(getLeftOf(i)).priority < priority || getNode(getRightOf(i)).priority < priority){
 					bubbleDown(i);
 				}
+				break;
 			}
 		}
 	}
