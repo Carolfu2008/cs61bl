@@ -182,9 +182,9 @@ public class Graph implements Iterable<Integer>{
         private Object edgeInfo;
 
         public Edge(int from, int to, Object info) {
-            from = new Integer(from);
-            to = new Integer(to);
-            edgeInfo = info;
+            this.from = new Integer(from);
+            this.to = new Integer(to);
+            this.edgeInfo = info;
         }
 
         public Integer to() {
