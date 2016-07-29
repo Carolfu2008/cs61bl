@@ -208,7 +208,8 @@ public class ArrayHeap<T> {
 				if (getParentOf(i) != 0 &&getNode(getParentOf(i)).priority > priority){
 					bubbleUp(i);
 				}
-				if (getLeftOf(i)<contents.size() && getRightOf(i)<contents.size() && getNode(getLeftOf(i)).priority < priority || getNode(getRightOf(i)).priority < priority){
+				if ((getLeftOf(i) < contents.size()) &&
+						(getNode(getLeftOf(i)).priority < priority || getNode(getRightOf(i)).priority < priority)){
 					bubbleDown(i);
 				}
 				break;
