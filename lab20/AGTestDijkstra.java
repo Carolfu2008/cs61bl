@@ -88,7 +88,6 @@ public class AGTestDijkstra {
         ArrayList<Integer> path3 = g.shortestPath(0, 4);
         ArrayList<Integer> path4 = g.shortestPath(0, 5);
         ArrayList<Integer> path5 = g.shortestPath(0, 6);
-        ArrayList<Integer> path6 = g.shortestPath(0, 7);
 
         List<Integer> expected0 = Arrays.asList(0, 1);
         List<Integer> expected1 = Arrays.asList(0, 4, 3, 2);
@@ -96,7 +95,6 @@ public class AGTestDijkstra {
         List<Integer> expected3 = Arrays.asList(0, 4);
         List<Integer> expected4 = Arrays.asList(0, 4, 3, 5);
         List<Integer> expected5 = Arrays.asList(0, 6);
-        List<Integer> expected6 = Arrays.asList(0, 6, 7);
 
         assertEquals(expected0, path0);
         assertEquals(expected1, path1);
@@ -104,7 +102,6 @@ public class AGTestDijkstra {
         assertEquals(expected3, path3);
         assertEquals(expected4, path4);
         assertEquals(expected5, path5);
-        assertEquals(expected6, path6);
     }
 
     /**
