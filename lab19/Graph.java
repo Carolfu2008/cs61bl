@@ -216,6 +216,7 @@ public class Graph implements Iterable<Integer>{
             for (int i = 0;i < vertexCount;i++){
                 if (result.contains(i) && arrary[i][p] &&!rtn.contains(i)){
                     p = i;
+                    System.out.println(p);
                     rtn.add(0,i);
                     break;
                 }
