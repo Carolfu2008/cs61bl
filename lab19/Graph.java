@@ -193,6 +193,7 @@ public class Graph implements Iterable<Integer>{
     // If no path exists, returns an empty arrayList.
     // If startVertex == stopVertex, returns a one element arrayList.
     public ArrayList<Integer> path(int startVertex, int stopVertex) {
+        System.out.println(startVertex+" "+startVertex);
         ArrayList<Integer> result = new ArrayList<Integer>();
         ArrayList<Integer> rtn = new ArrayList<Integer>();
         Iterator<Integer> iter = new DFSIterator(startVertex);
@@ -213,22 +214,14 @@ public class Graph implements Iterable<Integer>{
         rtn.add(stopVertex);
         int p = stopVertex;
         while (p != startVertex) {
-            for (int i = 0;i < vertexCount;i++){
-                if (result.contains(i) && arrary[i][p] &&!rtn.contains(i)){
-                    p = i;
-                    System.out.println(p);
-                    rtn.add(0,i);
-                    break;
-                }
-            }
-            /*List<Edge> x = neighbors(p);
+            List<Edge> x = neighbors(p);
             for (int i = 0;i < x.size();i++){
                 if (result.contains(x.get(i).from) && p == x.get(i).to && !rtn.contains(x.get(i).from)){
                     rtn.add(0,x.get(i).from);
                     p = x.get(i).from;
                     break;
                 }
-            }*/
+            }
         }
         return rtn;
         // you supply the body of this method
