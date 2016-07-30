@@ -173,6 +173,7 @@ public class Graph implements Iterable<Integer>{
             if (value != null)
                 result.add(value);
         }
+        System.out.println(result);
         return result;
     }
 
