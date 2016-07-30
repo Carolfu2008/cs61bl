@@ -164,7 +164,7 @@ public class Graph implements Iterable<Integer>{
             return true;
         }
         ArrayList<Integer> result = visitAll(startVertex);
-        return result.contains(stopVertex);
+        return !result.contains(stopVertex);
     }
 
 
