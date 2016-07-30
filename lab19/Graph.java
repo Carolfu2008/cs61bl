@@ -213,14 +213,20 @@ public class Graph implements Iterable<Integer>{
         rtn.add(stopVertex);
         int p = stopVertex;
         while (p != startVertex) {
-            List<Edge> x = neighbors(p);
+            for (int i = 0;i < vertexCount;i++){
+                if (result.contains(i) && arrary[i][p] &&!rtn.contains(i)){
+                    p = i;
+                    rtn.add(0,i);
+                }
+            }
+            /*List<Edge> x = neighbors(p);
             for (int i = 0;i < x.size();i++){
                 if (result.contains(x.get(i).from) && p == x.get(i).to && !rtn.contains(x.get(i).from)){
                     rtn.add(0,x.get(i).from);
                     p = x.get(i).from;
                     break;
                 }
-            }
+            }*/
         }
         return rtn;
         // you supply the body of this method
