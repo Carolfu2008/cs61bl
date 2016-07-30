@@ -194,7 +194,7 @@ public class Graph implements Iterable<Integer>{
     // If no path exists, returns an empty arrayList.
     // If startVertex == stopVertex, returns a one element arrayList.
     public ArrayList<Integer> path(int startVertex, int stopVertex) {
-        System.out.println(startVertex+" "+startVertex);
+        System.out.println(startVertex+" "+stopVertex);
         ArrayList<Integer> result = new ArrayList<Integer>();
         ArrayList<Integer> rtn = new ArrayList<Integer>();
         Iterator<Integer> iter = new DFSIterator(startVertex);
