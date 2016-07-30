@@ -73,19 +73,20 @@ public class Graph implements Iterable<Integer>{
     public List neighbors(int vertex) {
         // your code here
         ArrayList<Edge> rtn = new ArrayList<>();
-        if (vertexCount > 10){
-            for (int i = 0;i < vertexCount;i++){
-                if (arrary[i][vertex]){
-                    rtn.add(new Edge(i,vertex,null));
-                }
-            }
-            return rtn;
+        /*if (vertexCount > 10){
+
         }
         for (int i = 0; i < adjLists.length; i++) {
             for (Edge x : adjLists[i]) {
                 if (vertex == x.to) {
                     rtn.add(x);
                 }
+            }
+        }
+        return rtn;*/
+        for (int i = 0;i < vertexCount;i++){
+            if (arrary[i][vertex]){
+                rtn.add(new Edge(i,vertex,null));
             }
         }
         return rtn;
