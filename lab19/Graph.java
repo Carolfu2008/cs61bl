@@ -1,9 +1,4 @@
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.NoSuchElementException;
-import java.util.Stack;
+import java.util.*;
 
 public class Graph implements Iterable<Integer>{
 
@@ -45,26 +40,37 @@ public class Graph implements Iterable<Integer>{
     // with the given edge information.
     public void addEdge(int v1, int v2, Object edgeInfo) {
         //your code here
+        adjLists[v1].add(new Edge(v1,v2,edgeInfo));
     }
 
     // Add to the graph an undirected edge from vertex v1 to vertex v2,
     // with the given edge information.
     public void addUndirectedEdge(int v1, int v2, Object edgeInfo) {
         //your code here
+        adjLists[v1].add(new Edge(v1,v2,edgeInfo));
+        adjLists[v2].add(new Edge(v2,v1,edgeInfo));
     }
 
     // Return true if there is an edge from vertex "from" to vertex "to";
     // return false otherwise.
     public boolean isAdjacent(int from, int to) {
         //your code here
-        return false;
+        return adjLists[from].contains(to);
     }
 
     // Returns a list of all the neighboring  vertices 'u'
     // such that the edge (VERTEX, 'u') exists in this graph.
-    public List neighbors(int vertex) {
+    public List<Edge> neighbors(int vertex) {
         // your code here
-        return null;
+        ArrayList<Edge> rtn = new ArrayList<>();
+        for (int i = 0; i < adjLists.length; i++) {
+            for (Edge x : adjLists[i]) {
+                if (vertex == x.to) {
+                    rtn.add(x);
+                }
+            }
+        }
+        return rtn;
     }
 
     // Return the number of incoming vertices for the given vertex,
@@ -72,6 +78,13 @@ public class Graph implements Iterable<Integer>{
     public int inDegree(int vertex) {
         int count = 0;
         //your code here
+        for (int i = 0; i <  adjLists.length; i++) {
+            for (int j = 0; j < adjLists[i].size(); j++) {
+                if (adjLists[i].get(j).to == vertex) {
+                    count++;
+                }
+            }
+        }
         return count;
     }
 
@@ -90,16 +103,31 @@ public class Graph implements Iterable<Integer>{
 
         public DFSIterator(Integer start) {
             //your code here
+            fringe = new Stack<>();
+            visited = new HashSet<>();
+            fringe.push(start);
+
         }
 
         public boolean hasNext() {
             //your code here
-            return false;
+            return !fringe.empty();
         }
 
         public Integer next() {
             //your code here
-            return null;
+                Integer v = fringe.pop();
+                if (visited.contains(v)){
+                    return next();
+                }
+                visited.add(v);
+
+                for (Edge a : adjLists[v]){
+                    if (!visited.contains(a.to)) {
+                        fringe.push(a.to);
+                    }
+                }
+                return v;
         }
 
         //ignore this method
@@ -127,7 +155,11 @@ public class Graph implements Iterable<Integer>{
     // in this graph. If STARVERTEX == STOPVERTEX, returns true.
     public boolean pathExists(int startVertex, int stopVertex) {
         // your code here
-        return false;
+        if (startVertex == stopVertex){
+            return true;
+        }
+        ArrayList<Integer> result = visitAll(startVertex);
+        return result.contains(stopVertex);
     }
 
 
@@ -135,7 +167,36 @@ public class Graph implements Iterable<Integer>{
     // If no path exists, returns an empty arrayList.
     // If startVertex == stopVertex, returns a one element arrayList.
     public ArrayList<Integer> path(int startVertex, int stopVertex) {
-        return new ArrayList<Integer>();
+        ArrayList<Integer> result = new ArrayList<Integer>();
+        ArrayList<Integer> rtn = new ArrayList<Integer>();
+        Iterator<Integer> iter = new DFSIterator(startVertex);
+        if (!pathExists(startVertex,stopVertex)) {
+            return rtn;
+        }
+        if (startVertex == stopVertex) {
+            rtn.add(startVertex);
+            return  rtn;
+        }
+        while (iter.hasNext()) {
+            int value = iter.next();
+            result.add(value);
+            if (value == stopVertex) {
+                break;
+            }
+        }
+        rtn.add(stopVertex);
+        int p = stopVertex;
+        while (p != startVertex) {
+            List<Edge> x = neighbors(p);
+            for (int i = 0;i < x.size();i++){
+                if (result.contains(x.get(i).from) && p == x.get(i).to && !rtn.contains(x.get(i).from)){
+                    rtn.add(0,x.get(i).from);
+                    p = x.get(i).from;
+                    break;
+                }
+            }
+        }
+        return rtn;
         // you supply the body of this method
     }
 
@@ -151,11 +212,18 @@ public class Graph implements Iterable<Integer>{
     private class TopologicalIterator implements Iterator<Integer> {
 
         private Stack<Integer> fringe;
-
+        private int[] currentInDegree= new int[adjLists.length] ;
         // more instance variables go here
 
         public TopologicalIterator() {
             fringe = new Stack<Integer>();
+            for (int i = 0;i < adjLists.length;i++){
+                currentInDegree[i] = inDegree(i);
+                if (currentInDegree[i] == 0){
+                    fringe.push(i);
+                    currentInDegree[i]--;
+                }
+            }
             // more statements go here
         }
 
@@ -164,7 +232,17 @@ public class Graph implements Iterable<Integer>{
         }
 
         public Integer next() {
-            return new Integer(0);
+            Integer v = fringe.pop();
+            for (Edge x: adjLists[v]){
+                currentInDegree[x.to]--;
+            }
+            for (int i = 0;i < adjLists.length; i++){
+                if (currentInDegree[i] == 0){
+                    fringe.push(i);
+                    currentInDegree[i]--;
+                }
+            }
+            return v;
             // you supply the real body of this method
         }
 
@@ -182,8 +260,8 @@ public class Graph implements Iterable<Integer>{
         private Object edgeInfo;
 
         public Edge(int from, int to, Object info) {
-            from = new Integer(from);
-            to = new Integer(to);
+            this.from = new Integer(from);
+            this.to = new Integer(to);
             edgeInfo = info;
         }
 
