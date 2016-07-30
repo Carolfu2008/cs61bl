@@ -116,6 +116,9 @@ public class Graph implements Iterable<Integer>{
 
         public Integer next() {
             //your code here
+                if (fringe.empty()){
+                    return null;
+                }
                 Integer v = fringe.pop();
                 if (visited.contains(v)){
                     return next();
@@ -145,7 +148,9 @@ public class Graph implements Iterable<Integer>{
         Iterator<Integer> iter = new DFSIterator(startVertex);
 
         while (iter.hasNext()) {
-            result.add(iter.next());
+            Integer value = iter.next();
+            if (value != null)
+                result.add(value);
         }
         return result;
     }
