@@ -196,6 +196,7 @@ public class Graph implements Iterable<Integer>{
     public ArrayList<Integer> path(int startVertex, int stopVertex) {
         System.out.println(startVertex+" "+stopVertex);
         ArrayList<Integer> result = new ArrayList<Integer>();
+        HashSet<Edge> w = new HashSet<>();
         ArrayList<Integer> rtn = new ArrayList<Integer>();
         Iterator<Integer> iter = new DFSIterator(startVertex);
         if (!pathExists(startVertex,stopVertex)) {
@@ -229,7 +230,6 @@ public class Graph implements Iterable<Integer>{
                 if (result.contains(x.get(i).from) && p == x.get(i).to && !rtn.contains(x.get(i).from)){
                     rtn.add(0,x.get(i).from);
                     p = x.get(i).from;
-                    break;
                 }
             }
         }
