@@ -201,6 +201,15 @@ public class Graph implements Iterable<Integer>{
         if (!pathExists(startVertex,stopVertex)) {
             return rtn;
         }
+        if (startVertex == 4&& stopVertex == 0){
+            System.out.println(neighbors(0));
+            System.out.println(neighbors(1));
+            System.out.println(neighbors(2));
+            System.out.println(neighbors(3));
+            System.out.println(neighbors(4));
+            System.out.println(neighbors(5));
+            System.out.println(neighbors(6));
+        }
         if (startVertex == stopVertex) {
             rtn.add(startVertex);
             return  rtn;
