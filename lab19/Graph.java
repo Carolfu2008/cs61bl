@@ -3,11 +3,13 @@ import java.util.*;
 public class Graph implements Iterable<Integer>{
 
     private LinkedList<Edge>[] adjLists;
+    private boolean[][] arrary;
     private int vertexCount;
     private int startVertex;
 
     // Initialize a graph with the given number of vertices and no edges.
     public Graph(int numVertices) {
+        arrary = new boolean[numVertices][numVertices];
         adjLists = new LinkedList[numVertices];
         startVertex = 0;
         for (int k = 0; k < numVertices; k++) {
@@ -41,6 +43,7 @@ public class Graph implements Iterable<Integer>{
     public void addEdge(int v1, int v2, Object edgeInfo) {
         //your code here
         adjLists[v1].add(new Edge(v1,v2,edgeInfo));
+        arrary[v1][v2] = true;
     }
 
     // Add to the graph an undirected edge from vertex v1 to vertex v2,
@@ -49,6 +52,8 @@ public class Graph implements Iterable<Integer>{
         //your code here
         adjLists[v1].add(new Edge(v1,v2,edgeInfo));
         adjLists[v2].add(new Edge(v2,v1,edgeInfo));
+        arrary[v1][v2] = true;
+        arrary[v2][v1] = true;
     }
 
     // Return true if there is an edge from vertex "from" to vertex "to";
@@ -68,6 +73,13 @@ public class Graph implements Iterable<Integer>{
     public List neighbors(int vertex) {
         // your code here
         ArrayList<Edge> rtn = new ArrayList<>();
+        if (vertexCount > 10){
+            for (int i = 0;i < vertexCount;i++){
+                if (arrary[i][vertex]){
+                    rtn.add(new Edge(i,vertex,null));
+                }
+            }
+        }
         for (int i = 0; i < adjLists.length; i++) {
             for (Edge x : adjLists[i]) {
                 if (vertex == x.to) {
