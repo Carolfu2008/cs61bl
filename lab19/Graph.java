@@ -123,7 +123,9 @@ public class Graph implements Iterable<Integer>{
                 if (visited.contains(v)){
                     return next();
                 }
-                fringe.removeElement(v);
+                while (fringe.contains(v)) {
+                    fringe.remove(v);
+                }
                 visited.add(v);
                 for (Edge a : adjLists[v]){
                     if (!visited.contains(a.to)) {
@@ -164,7 +166,7 @@ public class Graph implements Iterable<Integer>{
             return true;
         }
         ArrayList<Integer> result = visitAll(startVertex);
-        return !result.contains(stopVertex);
+        return result.contains(stopVertex);
     }
 
 
