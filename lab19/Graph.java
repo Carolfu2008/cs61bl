@@ -60,7 +60,7 @@ public class Graph implements Iterable<Integer>{
 
     // Returns a list of all the neighboring  vertices 'u'
     // such that the edge (VERTEX, 'u') exists in this graph.
-    public List<Edge> neighbors(int vertex) {
+    public List neighbors(int vertex) {
         // your code here
         ArrayList<Edge> rtn = new ArrayList<>();
         for (int i = 0; i < adjLists.length; i++) {
