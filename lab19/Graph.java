@@ -55,7 +55,12 @@ public class Graph implements Iterable<Integer>{
     // return false otherwise.
     public boolean isAdjacent(int from, int to) {
         //your code here
-        return adjLists[from].contains(to);
+        for (Edge x : adjLists[from]){
+            if (x.to == to){
+                return true;
+            }
+        }
+        return false;
     }
 
     // Returns a list of all the neighboring  vertices 'u'
