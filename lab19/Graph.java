@@ -79,6 +79,7 @@ public class Graph implements Iterable<Integer>{
                     rtn.add(new Edge(i,vertex,null));
                 }
             }
+            return rtn;
         }
         for (int i = 0; i < adjLists.length; i++) {
             for (Edge x : adjLists[i]) {
