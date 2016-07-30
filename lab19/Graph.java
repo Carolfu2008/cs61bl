@@ -217,6 +217,7 @@ public class Graph implements Iterable<Integer>{
                 if (result.contains(i) && arrary[i][p] &&!rtn.contains(i)){
                     p = i;
                     rtn.add(0,i);
+                    break;
                 }
             }
             /*List<Edge> x = neighbors(p);
