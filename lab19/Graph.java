@@ -123,7 +123,7 @@ public class Graph implements Iterable<Integer>{
                 if (visited.contains(v)){
                     return next();
                 }
-                fringe.remove(v);
+                fringe.removeElement(v);
                 visited.add(v);
                 for (Edge a : adjLists[v]){
                     if (!visited.contains(a.to)) {
