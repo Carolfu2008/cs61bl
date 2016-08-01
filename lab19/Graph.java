@@ -3,13 +3,11 @@ import java.util.*;
 public class Graph implements Iterable<Integer>{
 
     private LinkedList<Edge>[] adjLists;
-    private boolean[][] arrary;
     private int vertexCount;
     private int startVertex;
 
     // Initialize a graph with the given number of vertices and no edges.
     public Graph(int numVertices) {
-        arrary = new boolean[numVertices][numVertices];
         adjLists = new LinkedList[numVertices];
         startVertex = 0;
         for (int k = 0; k < numVertices; k++) {
@@ -43,7 +41,6 @@ public class Graph implements Iterable<Integer>{
     public void addEdge(int v1, int v2, Object edgeInfo) {
         //your code here
         adjLists[v1].add(new Edge(v1,v2,edgeInfo));
-        arrary[v1][v2] = true;
     }
 
     // Add to the graph an undirected edge from vertex v1 to vertex v2,
@@ -52,8 +49,6 @@ public class Graph implements Iterable<Integer>{
         //your code here
         adjLists[v1].add(new Edge(v1,v2,edgeInfo));
         adjLists[v2].add(new Edge(v2,v1,edgeInfo));
-        arrary[v1][v2] = true;
-        arrary[v2][v1] = true;
     }
 
     // Return true if there is an edge from vertex "from" to vertex "to";
@@ -73,20 +68,11 @@ public class Graph implements Iterable<Integer>{
     public List neighbors(int vertex) {
         // your code here
         ArrayList<Edge> rtn = new ArrayList<>();
-        /*if (vertexCount > 10){
-
-        }
         for (int i = 0; i < adjLists.length; i++) {
             for (Edge x : adjLists[i]) {
                 if (vertex == x.to) {
                     rtn.add(x);
                 }
-            }
-        }
-        return rtn;*/
-        for (int i = 0;i < vertexCount;i++){
-            if (arrary[i][vertex]){
-                rtn.add(new Edge(i,vertex,null));
             }
         }
         return rtn;
@@ -125,7 +111,6 @@ public class Graph implements Iterable<Integer>{
             fringe = new Stack<>();
             visited = new HashSet<>();
             fringe.push(start);
-
         }
 
         public boolean hasNext() {
@@ -136,12 +121,9 @@ public class Graph implements Iterable<Integer>{
         public Integer next() {
             //your code here
                 if (fringe.empty()){
-                    return null;
+                    throw new NoSuchElementException();
                 }
                 Integer v = fringe.pop();
-                if (visited.contains(v)){
-                    return next();
-                }
                 while (fringe.contains(v)) {
                     fringe.remove(v);
                 }
@@ -169,11 +151,8 @@ public class Graph implements Iterable<Integer>{
         Iterator<Integer> iter = new DFSIterator(startVertex);
 
         while (iter.hasNext()) {
-            Integer value = iter.next();
-            if (value != null)
-                result.add(value);
+            result.add(iter.next());
         }
-        System.out.println(result);
         return result;
     }
 
@@ -194,47 +173,25 @@ public class Graph implements Iterable<Integer>{
     // If no path exists, returns an empty arrayList.
     // If startVertex == stopVertex, returns a one element arrayList.
     public ArrayList<Integer> path(int startVertex, int stopVertex) {
-        System.out.println(startVertex+" "+stopVertex);
-        ArrayList<Integer> result = new ArrayList<Integer>();
-        HashSet<Edge> w = new HashSet<>();
-        ArrayList<Integer> rtn = new ArrayList<Integer>();
-        Iterator<Integer> iter = new DFSIterator(startVertex);
-        if (!pathExists(startVertex,stopVertex)) {
+        ArrayList<Integer> rtn = new ArrayList<>();
+        if (!pathExists(startVertex,stopVertex)){
             return rtn;
         }
-        if (startVertex == 4&& stopVertex == 0){
-            System.out.println(neighbors(0));
-            System.out.println(neighbors(1));
-            System.out.println(neighbors(2));
-            System.out.println(neighbors(3));
-            System.out.println(neighbors(4));
-            System.out.println(neighbors(5));
-            System.out.println(neighbors(6));
-        }
-        if (startVertex == stopVertex) {
-            rtn.add(startVertex);
-            return  rtn;
-        }
-        while (iter.hasNext()) {
-            int value = iter.next();
-            result.add(value);
-            if (value == stopVertex) {
-                break;
-            }
-        }
+        ArrayList<Integer> visited = new ArrayList<>();
+        helper(startVertex,stopVertex,rtn,visited);
         rtn.add(stopVertex);
-        int p = stopVertex;
-        while (p != startVertex) {
-            List<Edge> x = neighbors(p);
-            for (int i = 0;i < x.size();i++){
-                if (result.contains(x.get(i).from) && p == x.get(i).to && !rtn.contains(x.get(i).from)){
-                    rtn.add(0,x.get(i).from);
-                    p = x.get(i).from;
-                }
-            }
-        }
         return rtn;
         // you supply the body of this method
+    }
+    private boolean helper(int startVertex, int stopVertex,ArrayList<Integer> rtn,ArrayList<Integer> visited){
+        visited.add(stopVertex);
+        for (Object x : neighbors(stopVertex)) {
+            if (!visited.contains(((Edge) x).from)&&helper(startVertex, ((Edge) x).from, rtn, visited)) {
+               rtn.add(((Edge) x).from);
+                return true;
+            }
+        }
+        return startVertex == stopVertex; 
     }
 
     public ArrayList<Integer> topologicalSort() {
