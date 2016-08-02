@@ -275,7 +275,7 @@ public class Graph implements Iterable<Integer>{
             }
             done.add(value.item);
             for (Edge x : adjLists[value.item]){
-                int distance = x.weight + value.distance;
+                int distance = (Integer) x.edgeInfo + value.distance;
                 if (!done.contains(x.to) && distance < d[x.to]) {
                     fringe.add(new AA(x.to,distance));
                     d[x.to] = distance;
@@ -310,7 +310,6 @@ public class Graph implements Iterable<Integer>{
         private Integer from;
         private Integer to;
         private Object edgeInfo;
-        private Integer weight;
 
         public Edge(int from, int to, Object info) {
             this.from = new Integer(from);
