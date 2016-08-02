@@ -1,3 +1,4 @@
+import javax.xml.soap.Node;
 import java.util.*;
 
 public class Graph implements Iterable<Integer>{
@@ -249,15 +250,67 @@ public class Graph implements Iterable<Integer>{
 
     public ArrayList<Integer> shortestPath (int startVertex, int endVertex){
         //your code here...
+        Queue<AA> fringe = new PriorityQueue<>(vertexCount,new NodeComparator());
         ArrayList<Integer> rtn = new ArrayList<>();
+        int d[] = new int [vertexCount];
+        int from[] = new int[vertexCount];
+        HashSet<Integer> done = new HashSet<>();
+        fringe.add(new AA(startVertex,0));
+        for (int i = 0 ;i< vertexCount;i++){
+            d[i] =Integer.MAX_VALUE;
+            from[i] = -1;
+        }
+        d[startVertex] = 0;
+        while (!fringe.isEmpty()) {
+            AA value = fringe.poll();
+            if (done.contains(value.item)) continue;
+            if (value.item == endVertex) {
+                int p = value.item;
+                while (startVertex != p) {
+                    rtn.add(0,p);
+                    p = from[p];
+                }
+                rtn.add(0,p);
+                return rtn;
+            }
+            done.add(value.item);
+            for (Edge x : adjLists[value.item]){
+                int distance = 1 + value.distance;
+                if (!done.contains(x.to) && distance < d[x.to]) {
+                    fringe.add(new AA(x.to,distance));
+                    d[x.to] = distance;
+                    from[x.to] = x.from;
+                }
+            }
+
+        }
         return rtn;
     }
-    private class Edge {
+    public class NodeComparator implements Comparator<AA>
+    {
+        @Override
+        public int compare(AA o1, AA o2) {
+            if (o1.distance < o2.distance)
+                return -1;
+            else if (o1.distance > o2.distance)
+                return 1;
+            else return 0;
+        }
+    }
+    private class AA {
+        private int item;
+        private int distance;
 
+        public AA(int item, int distance) {
+            this.item = item;
+            this.distance = distance;
+        }
+    }
+    private class Edge {
         private Integer from;
         private Integer to;
         private Object edgeInfo;
-        private Integer weight;
+        private Integer weight = 1;
 
         public Edge(int from, int to, Object info) {
             this.from = new Integer(from);
@@ -325,7 +378,7 @@ public class Graph implements Iterable<Integer>{
         System.out.println();
         System.out.println();
         System.out.println("Path from 0 to 3");
-        result = g1.path(0, 3);
+        result = g1.shortestPath(0, 3);
         iter = result.iterator();
         while (iter.hasNext()) {
             System.out.println(iter.next() + " ");
@@ -333,7 +386,7 @@ public class Graph implements Iterable<Integer>{
         System.out.println();
         System.out.println();
         System.out.println("Path from 0 to 4");
-        result = g1.path(0, 4);
+        result = g1.shortestPath(0, 4);
         iter = result.iterator();
         while (iter.hasNext()) {
             System.out.println(iter.next() + " ");
@@ -341,7 +394,7 @@ public class Graph implements Iterable<Integer>{
         System.out.println();
         System.out.println();
         System.out.println("Path from 1 to 3");
-        result = g1.path(1, 3);
+        result = g1.shortestPath(1, 3);
         iter = result.iterator();
         while (iter.hasNext()) {
             System.out.println(iter.next() + " ");
@@ -349,7 +402,7 @@ public class Graph implements Iterable<Integer>{
         System.out.println();
         System.out.println();
         System.out.println("Path from 1 to 4");
-        result = g1.path(1, 4);
+        result = g1.shortestPath(1, 4);
         iter = result.iterator();
         while (iter.hasNext()) {
             System.out.println(iter.next() + " ");
@@ -357,7 +410,7 @@ public class Graph implements Iterable<Integer>{
         System.out.println();
         System.out.println();
         System.out.println("Path from 4 to 0");
-        result = g1.path(4, 0);
+        result = g1.shortestPath(4, 0);
         if (result.size() != 0) {
             System.out.println("*** should be no path!");
         }
