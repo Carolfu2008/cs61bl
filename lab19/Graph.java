@@ -256,7 +256,11 @@ public class Graph implements Iterable<Integer>{
         public Edge(int from, int to, Object info) {
             this.from = new Integer(from);
             this.to = new Integer(to);
+<<<<<<< HEAD
             edgeInfo = info;
+=======
+            this.edgeInfo = info;
+>>>>>>> c595894a97dabf6fd7731df11372f6bf32f00787
         }
 
         public Integer to() {
