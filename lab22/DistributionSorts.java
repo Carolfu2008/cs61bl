@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class DistributionSorts {
@@ -7,6 +8,23 @@ public class DistributionSorts {
 	 */
 	public static void countingSort(int[] arr) {
 		// TODO your code here!
+		int [] ans = new int[arr.length];
+		int [] countArr = new int[10];
+		int [] posArr = new int [10];
+		for (int i = 0;i < arr.length; i++) {
+			countArr[arr[i]]++;
+		}
+		posArr[0] = countArr[0];
+		for (int i = 1;i < countArr.length ; i++) {
+			posArr[i] = posArr[i-1] + countArr[i];
+		}
+		for (int i = arr.length - 1 ; i >= 0; i--) {
+			ans[posArr[arr[i]] - 1] = arr[i];
+			posArr[arr[i]]--;
+		}
+		for (int i = 0; i < arr.length; i++) {
+			arr[i] = ans[i];
+		}
 	}
 
 	/**
@@ -25,6 +43,15 @@ public class DistributionSorts {
 			int start, int end) {
 		// TODO your code here! Make sure to use the countingSortByDigitInBounds
 		// helper method, given below.
+		if (digit >= 0) {
+			int p = start;
+			ArrayList<Integer> bound = countingSortByDigitInBounds(arr, digit, start, end);
+			for (Integer x : bound) {
+				MSDRadixSortFromDigitInBounds(arr,digit -1,p,x);
+				p = x;
+			}
+		}
+
 	}
 
 	/**
@@ -36,10 +63,38 @@ public class DistributionSorts {
 	 * boundary of each same-digit bucket in the array. This will be useful for
 	 * radix sort.
 	 */
-	private static int[] countingSortByDigitInBounds(int[] arr, int digit,
-			int start, int end) {
+	private static ArrayList<Integer> countingSortByDigitInBounds(int[] arr, int digit,
+														 int start, int end) {
+		int [] ans = new int[end - start];
+		ArrayList<Integer> rtn = new ArrayList();
+		int [] countArr = new int[10];
+		int [] posArr = new int [10];
+		for (int i = start; i < end; i++) {
+			countArr[(arr[i]/(int)(Math.pow(10,digit)))%10]++;
+		}
+
+		posArr[0] = countArr[0];
+		for (int i = 1;i < countArr.length ; i++) {
+			posArr[i] = posArr[i-1] + countArr[i];
+		}
+		for (int i = end -1; i >= start; i--) {
+			ans[posArr[(arr[i]/(int)(Math.pow(10,digit)))%10] - 1] = arr[i];
+			posArr[(arr[i]/(int)(Math.pow(10,digit)))%10]--;
+		}
+		for (int i = end -1,j = ans.length - 1 ; i >= start; i--,j--){
+			arr[i] = ans[j];
+		}
+		for (int i = start; i < end -1 ;i++) {
+			if ((arr[i]/(int)(Math.pow(10,digit)))%10 !=(arr[i+1]/(int)(Math.pow(10,digit)))%10){
+				rtn.add(i+1);
+			}
+		}
+		rtn.add(end);
+
 		// TODO your code here!
-		return null;
+
+
+		return rtn;
 	}
 
 	/**
@@ -90,7 +145,7 @@ public class DistributionSorts {
 			arr2[i] = randomDigit();
 		}
 		System.out.println("Original array: " + Arrays.toString(arr2));
-		MSDRadixSort(arr2);
+		//MSDRadixSort(arr2);
 		System.out.println("Should be sorted: " + Arrays.toString(arr2));
 
 		int[] arr3 = new int[30];
@@ -100,5 +155,6 @@ public class DistributionSorts {
 		System.out.println("Original array: " + Arrays.toString(arr3));
 		MSDRadixSort(arr3);
 		System.out.println("Should be sorted: " + Arrays.toString(arr3));
+		countingSortByDigitInBounds(arr3,mostDigitsIn(arr3) - 1,5, arr3.length);
 	}
 }
