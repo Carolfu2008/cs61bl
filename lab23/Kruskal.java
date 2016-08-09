@@ -41,6 +41,8 @@ public class Kruskal {
                 T.addEdge(x);
             }
         }
+        System.out.println(T);
+        System.out.println(input);
         return T;
     }
 
