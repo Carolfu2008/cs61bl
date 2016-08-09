@@ -36,7 +36,7 @@ public class Kruskal {
             T.addVertex(x);
         }
         for (Edge x : input.getAllEdges()) {
-            if (p.isConnected(x.getSource(),x.getDest())) {
+            if (!p.isConnected(x.getSource(),x.getDest())) {
                 p.union(x.getSource(), x.getDest());
                 T.addEdge(x);
             }
