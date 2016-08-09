@@ -31,19 +31,16 @@ public class Kruskal {
     public static Graph minSpanTreeFast(Graph input) {
         // TODO implement!
         Graph T = new Graph();
-        UnionFind p = new UnionFind(input.getAllVertices().size());
-        for (Integer x :input.getAllVertices()){
+        for (Integer x : input.getAllVertices()) {
             T.addVertex(x);
         }
         for (Edge x : input.getAllEdges()) {
-            if (!p.isConnected(x.getSource(),x.getDest())) {
-                p.union(x.getSource(), x.getDest());
+            if (!isConnected(T,x.getSource(),x.getDest())) {
                 T.addEdge(x);
             }
         }
-        System.out.println(T);
-        System.out.println(input);
         return T;
+        //return T;
     }
 
     /** A naive implementation of BFS to check if two nodes are connected. */
