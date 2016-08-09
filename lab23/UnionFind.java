@@ -47,8 +47,6 @@ public class UnionFind {
      *  directly to the root, is employed allowing for fast search-time. */
     public int find(int vertex) {
         // TODO implement
-        if (vertex < 0) System.out.println("p");
-        if (vertex > array.length) System.out.println(vertex);
         if (array[vertex] < 0) return vertex;
         return find(array[vertex]);
     }
@@ -60,12 +58,14 @@ public class UnionFind {
         if (isConnected(v1,v2)) return;
         int size1 = -array[find(v1)];
         int size2 = -array[find(v2)];
+        int vv1 = find(v1);
+        int vv2 = find(v2);
         if (size1 > size2) {
-            array[v2] = find(v1);
-            array[find(v1)] -= size2;
+            array[v2] = vv1;
+            array[vv1] -= size2;
         } else {
-            array[v1] = find(v2);
-            array[find(v2)] -= size1;
+            array[v1] = vv2;
+            array[vv2] -= size1;
         }
     }
 }
