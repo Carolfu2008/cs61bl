@@ -48,8 +48,9 @@ public class UnionFind {
      *  directly to the root, is employed allowing for fast search-time. */
     public int find(int vertex) {
         // TODO implement
-        if (array[vertex] < 0) return vertex;
-        return find(array[vertex]);
+            if (vertex > array.length) throw new IllegalArgumentException();
+            if (array[vertex] < 0) return vertex;
+            return find(array[vertex]);
     }
 
     /** Connects two elements V1 and V2 together in the UnionFind structure. V1
