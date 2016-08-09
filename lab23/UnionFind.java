@@ -58,7 +58,7 @@ public class UnionFind {
         if (isConnected(v1,v2)) return;
         int size1 = -array[find(v1)];
         int size2 = -array[find(v2)];
-        if (size1 >= size2) {
+        if (size1 > size2) {
             array[v2] = find(v1);
             array[find(v1)] -= size2;
         } else {
