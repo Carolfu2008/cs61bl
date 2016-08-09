@@ -48,6 +48,7 @@ public class UnionFind {
     public int find(int vertex) {
         // TODO implement
         if (vertex < 0) System.out.println("p");
+        if (vertex > array.length) System.out.println("ll");
         if (array[vertex] < 0) return vertex;
         return find(array[vertex]);
     }
