@@ -47,7 +47,7 @@ public class UnionFind {
      *  directly to the root, is employed allowing for fast search-time. */
     public int find(int vertex) {
         // TODO implement
-        if (vertex > 1000) System.out.println("p");
+        if (vertex < 0) System.out.println("p");
         if (array[vertex] < 0) return vertex;
         return find(array[vertex]);
     }
