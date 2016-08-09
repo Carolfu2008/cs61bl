@@ -21,6 +21,7 @@ public class UnionFind {
      *  vertices are in disjoint sets. */
     public UnionFind(int n) {
         // TODO implement
+        System.out.println(n);
         array = new int[n+1];
         for (int i = 0; i < array.length; i++) {
             array[i] = -1;
@@ -55,6 +56,7 @@ public class UnionFind {
      *  and V2 can be any element and a union-by-size heurisitic is used. */
     public void union(int v1, int v2) {
         // TODO implement
+        System.out.println(v1 + " " + v2);
         if (isConnected(v1,v2)) return;
         int size1 = -array[find(v1)];
         int size2 = -array[find(v2)];
