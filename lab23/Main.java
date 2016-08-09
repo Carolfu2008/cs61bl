@@ -34,7 +34,7 @@ public class Main {
                 }
             }
         }
-        Graph input = Graph.random(count, count * 3, 100);
+        Graph input = Graph.randomGraph(count, count * 3, 100);
         System.out.println(">> Now processing number of vertices = " + count);
         long timeSpent = time(input);
         System.out.println(">> Processing time: " + timeSpent + " milliseconds\n");
@@ -45,7 +45,7 @@ public class Main {
      *  vertices are connected. */
     public static long time(Graph input) {
         long startTime = System.currentTimeMillis();
-        Graph mst = Kruskal.minSpanTree(input);
+        Graph mst = Kruskal.minSpanTreeFast(input);
         long stopTime = System.currentTimeMillis();
         return stopTime - startTime;
     }
