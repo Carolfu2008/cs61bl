@@ -20,7 +20,7 @@ public class Kruskal {
             T.addVertex(x);
         }
         for (Edge x : input.getAllEdges()) {
-            if (!isConnected(T,x.getLabel(),x.getDest())) {
+            if (!isConnected(T,x.getSource(),x.getDest())) {
                 T.addEdge(x);
             }
         }
